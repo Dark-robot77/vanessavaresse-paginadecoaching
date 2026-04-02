@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Método Shock de Liderazgo Consciente® — Vanessa Varesse</title>
+  <meta name="description" content="El Método Shock de Liderazgo Consciente® transforma ejecutivos y equipos desde adentro. Coaching transformacional, inteligencia emocional y liderazgo consciente para empresas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ===== TAB SYSTEM ===== */
+    .m-tabs-nav {
+      display: flex;
+      flex-wrap: wrap;
+      border-bottom: 1px solid rgba(201,168,76,.2);
+      margin-bottom: 48px;
+    }
+    .m-tab-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      color: var(--gray);
+      padding: 14px 28px;
+      font-family: var(--font-body);
+      font-size: .76rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all .3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .m-tab-btn i { font-size: .9rem; }
+    .m-tab-btn:hover { color: var(--gold-light); }
+    .m-tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+    .m-tab-panel { display: none; }
+    .m-tab-panel.active { display: block; }
+    .m-tab-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+    .m-tab-desc { font-size: .95rem; color: var(--gray-light); line-height: 1.8; margin-bottom: 28px; }
+    .m-tab-items { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 14px; }
+    .m-tab-item { display: flex; align-items: flex-start; gap: 14px; }
+    .m-tab-item i { color: var(--gold); font-size: .75rem; margin-top: 5px; flex-shrink: 0; }
+    .m-tab-item span { color: var(--white-pure); font-size: .88rem; line-height: 1.6; }
+    .m-tab-visual-card {
+      background: var(--dark);
+      border: 1px solid rgba(201,168,76,.15);
+      padding: 44px 36px;
+      position: relative;
+      overflow: hidden;
+    }
+    .m-tab-visual-label {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .m-tab-visual-icon {
+      font-size: 4rem;
+      color: rgba(201,168,76,.1);
+      margin-bottom: 20px;
+      line-height: 1;
+    }
+    .m-tab-visual-text {
+      font-family: var(--font-heading);
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      color: var(--white-pure);
+      line-height: 1.4;
+      font-style: italic;
+    }
+    .m-tab-visual-glow {
+      position: absolute;
+      bottom: -30px; right: -30px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(201,168,76,.1) 0%, transparent 70%);
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    /* ===== PAIN POINTS GRID ===== */
+    .m-pain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .m-pain-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: rgba(220,60,60,.05);
+      border: 1px solid rgba(220,60,60,.15);
+      border-left: 3px solid rgba(220,80,80,.45);
+      font-size: .84rem;
+      color: var(--gray-light);
+      transition: all .3s ease;
+    }
+    .m-pain-item:hover { background: rgba(220,60,60,.08); border-left-color: rgba(220,80,80,.7); }
+    .m-pain-item i { color: rgba(220,80,80,.65); font-size: .8rem; flex-shrink: 0; }
+
+    /* ===== LEADER SECTION ===== */
+    .m-leader-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 70px;
+      align-items: center;
+    }
+    .m-leader-photo { position: relative; }
+    .m-leader-photo img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+    }
+    .m-leader-photo::after {
+      content: '';
+      position: absolute;
+      inset: 12px -12px -12px 12px;
+      border: 1px solid rgba(201,168,76,.25);
+      pointer-events: none;
+      z-index: -1;
+    }
+    .m-leader-items { display: flex; flex-direction: column; gap: 14px; margin: 28px 0; }
+    .m-leader-item { display: flex; align-items: flex-start; gap: 14px; }
+    .m-leader-item i { color: var(--gold); font-size: .75rem; margin-top: 5px; flex-shrink: 0; }
+    .m-leader-item span { color: var(--gray-light); font-size: .9rem; line-height: 1.6; }
+    .m-leader-quote {
+      font-family: var(--font-heading);
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
+      color: var(--gray-light);
+      font-style: italic;
+      line-height: 1.6;
+      border-left: 3px solid var(--gold);
+      padding-left: 24px;
+      margin-top: 36px;
+    }
+    .m-leader-quote em { color: var(--gold); }
+
+    /* ===== BENEFICIOS ===== */
+    .m-beneficios-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      max-width: 900px;
+      margin: 0 auto 60px;
+    }
+    .m-beneficio-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 24px;
+      background: rgba(201,168,76,.04);
+      border: 1px solid rgba(201,168,76,.12);
+      transition: all .3s ease;
+    }
+    .m-beneficio-item:hover { border-color: rgba(201,168,76,.3); background: rgba(201,168,76,.08); }
+    .m-beneficio-item i { color: var(--gold); font-size: .8rem; margin-top: 4px; flex-shrink: 0; }
+    .m-beneficio-item span { color: var(--gray-light); font-size: .88rem; line-height: 1.6; }
+
+    /* ===== CANVAS EN SECCIÓN TABS ===== */
+    .m-canvas-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .m-canvas-section > canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.45;
+    }
+    .m-canvas-section > .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== ANCHOR PHRASE ===== */
+    .m-anchor-phrase {
+      font-family: var(--font-heading);
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      color: var(--gold);
+      font-style: italic;
+      line-height: 1.5;
+      border-left: 3px solid rgba(201,168,76,.4);
+      padding-left: 24px;
+      margin-top: 36px;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 960px) {
+      .m-tab-content { grid-template-columns: 1fr; gap: 32px; }
+      .m-leader-grid { grid-template-columns: 1fr; gap: 48px; }
+      .m-leader-photo::after { display: none; }
+      .m-pain-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 768px) {
+      .m-tab-btn { padding: 12px 16px; font-size: .68rem; letter-spacing: 1px; }
+      .m-beneficios-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">
+        <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774954936/Logo_Vanessa_Varesse_Blanco_Sin_Fondo_paciud.png" alt="Vanessa Varesse" />
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="sobre-mi.html">Sobre Mí</a></li>
+        <li><a href="formacion.html">Formación</a></li>
+        <li><a href="metodo.html" class="active">Método</a></li>
+        <li><a href="logros.html">Logros</a></li>
+        <li><a href="empresas-alumnos.html">Empresas</a></li>
+        <li><a href="programas.html">Programas</a></li>
+        <li><a href="contacto.html" class="btn-nav">Contacto</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-bg" style="background-image: url('https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952659/vanessa_dirigiendo_taller_en_escenario_h6oct9.jpg');"></div>
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Inicio</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Método</span>
+      </div>
+      <h1>Método Shock de<br /><em class="shimmer-text">Liderazgo Consciente<sup style="font-size:.45em; vertical-align:super; color:var(--gold); -webkit-text-fill-color:var(--gold);">®</sup></em></h1>
+      <p>Transformación humana profunda para empresas y organizaciones</p>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SECCIÓN 1 — PROBLEMÁTICAS (PAIN POINTS)
+       ============================================================ -->
+  <section class="section-padding">
+    <div class="container">
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:start;">
+
+        <!-- Izquierda: texto -->
+        <div class="fade-up">
+          <span class="section-label">El Punto de Partida</span>
+          <h2>Cuando el potencial<br /><span>se convierte en límite</span></h2>
+          <div class="divider divider-left"></div>
+          <p style="color:var(--gray-light); line-height:1.8; margin-bottom:20px;">
+            Las organizaciones más exitosas no fracasan por falta de estrategia o tecnología. Fracasan porque las personas que las lideran cargan con bloqueos, creencias limitantes y una desconexión profunda de su propósito.
+          </p>
+          <p style="color:var(--gray-light); line-height:1.8; margin-bottom:32px;">
+            Cuando el ser humano detrás del ejecutivo no está bien, ninguna herramienta de gestión lo compensa.
+          </p>
+          <p class="m-anchor-phrase">
+            "El Método trabaja en la raíz:<br />la persona antes que el profesional."
+          </p>
+        </div>
+
+        <!-- Derecha: grid 8 pain points -->
+        <div class="fade-up delay-1">
+          <div class="m-pain-grid">
+            <div class="m-pain-item"><i class="fas fa-fire"></i><span>Estrés crónico y burnout ejecutivo</span></div>
+            <div class="m-pain-item"><i class="fas fa-user-slash"></i><span>Líderes desconectados de su equipo</span></div>
+            <div class="m-pain-item"><i class="fas fa-exclamation-triangle"></i><span>Decisiones tomadas desde el miedo</span></div>
+            <div class="m-pain-item"><i class="fas fa-bolt"></i><span>Conflictos internos no resueltos</span></div>
+            <div class="m-pain-item"><i class="fas fa-battery-empty"></i><span>Falta de propósito y motivación</span></div>
+            <div class="m-pain-item"><i class="fas fa-door-open"></i><span>Alta rotación y desmotivación</span></div>
+            <div class="m-pain-item"><i class="fas fa-puzzle-piece"></i><span>Cultura organizacional sin cohesión</span></div>
+            <div class="m-pain-item"><i class="fas fa-lock"></i><span>Bloqueos mentales y creencias limitantes</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="gold-separator"></div>
+
+  <!-- ============================================================
+       SECCIÓN 2 — QUÉ TRABAJA EL MÉTODO (TABS)
+       ============================================================ -->
+  <section class="section-padding bg-dark m-canvas-section">
+    <canvas id="metodoCanvas" aria-hidden="true"></canvas>
+    <div class="container">
+
+      <div class="text-center fade-up" style="margin-bottom:56px;">
+        <span class="section-label">El Proceso</span>
+        <h2>Lo que trabaja<br /><span>el Método</span></h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" style="margin:0 auto;">Cuatro dimensiones de transformación profunda que actúan de forma integrada</p>
+      </div>
+
+      <!-- TABS NAV -->
+      <div class="m-tabs-nav fade-up delay-1" role="tablist">
+        <button class="m-tab-btn active" data-tab="tab-personal" role="tab" aria-selected="true">
+          <i class="fas fa-user"></i> Transformación Personal
+        </button>
+        <button class="m-tab-btn" data-tab="tab-liderazgo" role="tab" aria-selected="false">
+          <i class="fas fa-star"></i> Liderazgo Consciente
+        </button>
+        <button class="m-tab-btn" data-tab="tab-regulacion" role="tab" aria-selected="false">
+          <i class="fas fa-wind"></i> Regulación &amp; Bienestar
+        </button>
+        <button class="m-tab-btn" data-tab="tab-equipos" role="tab" aria-selected="false">
+          <i class="fas fa-users"></i> Cohesión de Equipos
+        </button>
+      </div>
+
+      <!-- TAB 1: Transformación Personal -->
+      <div class="m-tab-panel active" id="tab-personal" role="tabpanel">
+        <div class="m-tab-content">
+          <div>
+            <p class="m-tab-desc">El cambio real comienza cuando el líder se confronta con su propia historia. Trabajamos en el nivel más profundo de la identidad para liberar lo que limita y activar lo que transforma.</p>
+            <ul class="m-tab-items">
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Autoconocimiento profundo y radical</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Liberación de creencias y patrones limitantes</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Reconexión con el propósito de vida</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Fortalecimiento de la identidad ejecutiva</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Gestión emocional de alto nivel</span></li>
+            </ul>
+          </div>
+          <div class="m-tab-visual-card">
+            <span class="m-tab-visual-label">Dimensión 01</span>
+            <div class="m-tab-visual-icon"><i class="fas fa-user"></i></div>
+            <p class="m-tab-visual-text">"Cuando el ser humano se conoce a sí mismo, nada puede limitar su potencial."</p>
+            <div class="m-tab-visual-glow"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: Liderazgo Consciente -->
+      <div class="m-tab-panel" id="tab-liderazgo" role="tabpanel">
+        <div class="m-tab-content">
+          <div>
+            <p class="m-tab-desc">El liderazgo auténtico no se enseña — se despierta. Acompañamos a los líderes a conectar con su versión más consciente, valiente y genuina para impactar desde adentro hacia afuera.</p>
+            <ul class="m-tab-items">
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Liderazgo desde valores y autenticidad</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Toma de decisiones consciente y valiente</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Comunicación transformacional con impacto</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Inspiración genuina sin imposición</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Presencia ejecutiva de alto impacto</span></li>
+            </ul>
+          </div>
+          <div class="m-tab-visual-card">
+            <span class="m-tab-visual-label">Dimensión 02</span>
+            <div class="m-tab-visual-icon"><i class="fas fa-star"></i></div>
+            <p class="m-tab-visual-text">"Un líder consciente no inspira por su cargo — inspira por quién es."</p>
+            <div class="m-tab-visual-glow"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: Regulación & Bienestar -->
+      <div class="m-tab-panel" id="tab-regulacion" role="tabpanel">
+        <div class="m-tab-content">
+          <div>
+            <p class="m-tab-desc">El alto rendimiento sostenible no es posible sin equilibrio. Trabajamos herramientas prácticas y profundas para que los líderes operen bajo presión sin sacrificar su bienestar ni el de su equipo.</p>
+            <ul class="m-tab-items">
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Técnicas de respiración para el alto rendimiento</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Gestión del estrés bajo presión extrema</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Prevención y recuperación del burnout</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Rutinas de equilibrio energético ejecutivo</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Bienestar físico, emocional y mental integrado</span></li>
+            </ul>
+          </div>
+          <div class="m-tab-visual-card">
+            <span class="m-tab-visual-label">Dimensión 03</span>
+            <div class="m-tab-visual-icon"><i class="fas fa-wind"></i></div>
+            <p class="m-tab-visual-text">"No puedes liderar desde el vacío. El bienestar no es un lujo — es la base del rendimiento real."</p>
+            <div class="m-tab-visual-glow"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 4: Cohesión de Equipos -->
+      <div class="m-tab-panel" id="tab-equipos" role="tabpanel">
+        <div class="m-tab-content">
+          <div>
+            <p class="m-tab-desc">Los mejores equipos no se construyen con técnicas de trabajo en equipo. Se construyen cuando cada persona se siente vista, valorada y conectada con un propósito común más grande que ella misma.</p>
+            <ul class="m-tab-items">
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Construcción de confianza genuina entre personas</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Comunicación empática y efectiva en equipos</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Creación de cultura organizacional consciente</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Resolución profunda de conflictos internos</span></li>
+              <li class="m-tab-item"><i class="fas fa-check"></i><span>Equipos de alto rendimiento con propósito</span></li>
+            </ul>
+          </div>
+          <div class="m-tab-visual-card">
+            <span class="m-tab-visual-label">Dimensión 04</span>
+            <div class="m-tab-visual-icon"><i class="fas fa-users"></i></div>
+            <p class="m-tab-visual-text">"Un equipo consciente es aquel donde cada persona da lo mejor de sí porque se siente parte de algo que importa."</p>
+            <div class="m-tab-visual-glow"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="gold-separator"></div>
+
+  <!-- ============================================================
+       SECCIÓN 3 — ACOMPAÑAMIENTO PARA LÍDERES
+       ============================================================ -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="m-leader-grid">
+
+        <!-- Foto -->
+        <div class="m-leader-photo fade-up">
+          <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952663/vanessa_liderando_dinamica_tomados_de_la_mano_en_conferencia_izwvoh.jpg" alt="Vanessa Varesse con líderes en proceso de transformación" />
+        </div>
+
+        <!-- Contenido -->
+        <div class="fade-up delay-1">
+          <span class="section-label">Para Líderes &amp; Empresas</span>
+          <h2>Acompañamiento para<br /><span>quienes deciden liderar</span></h2>
+          <div class="divider divider-left"></div>
+          <p style="color:var(--gray-light); line-height:1.8; margin-bottom:8px;">
+            El Método está diseñado para ejecutivos, directivos y líderes de equipos que entienden que la transformación más poderosa comienza desde adentro — y que su evolución impacta todo lo que los rodea.
+          </p>
+          <div class="m-leader-items">
+            <div class="m-leader-item"><i class="fas fa-check"></i><span>Sesiones individuales y grupales con profundidad transformacional</span></div>
+            <div class="m-leader-item"><i class="fas fa-check"></i><span>Diagnóstico personalizado para cada organización</span></div>
+            <div class="m-leader-item"><i class="fas fa-check"></i><span>Metodología vivencial, no solo teórica</span></div>
+            <div class="m-leader-item"><i class="fas fa-check"></i><span>Seguimiento continuo para asegurar el cambio real</span></div>
+            <div class="m-leader-item"><i class="fas fa-check"></i><span>Adaptación a la cultura y necesidades de cada empresa</span></div>
+          </div>
+          <blockquote class="m-leader-quote">
+            "Porque cuando un líder evoluciona,
+            <em>evoluciona todo lo que lo rodea."</em>
+          </blockquote>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="gold-separator"></div>
+
+  <!-- ============================================================
+       SECCIÓN 4 — MODALIDADES DE IMPLEMENTACIÓN
+       ============================================================ -->
+  <section class="section-padding bg-dark">
+    <div class="container">
+      <div class="text-center fade-up" style="margin-bottom:60px;">
+        <span class="section-label">Formatos</span>
+        <h2>Modalidades de<br /><span>implementación</span></h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" style="margin:0 auto;">Diseñamos cada proceso según las necesidades específicas de tu organización</p>
+      </div>
+
+      <div class="programs-grid stagger-children">
+
+        <div class="program-card fade-up delay-1">
+          <div class="program-number">01</div>
+          <div class="program-icon"><i class="fas fa-microphone"></i></div>
+          <h3>Conferencias &amp; Keynotes</h3>
+          <p>Presentaciones de alto impacto para eventos corporativos, congresos y convenciones. Una experiencia que mueve, despierta y transforma en pocas horas.</p>
+          <a href="contacto.html" class="btn btn-outline">Solicitar información</a>
+        </div>
+
+        <div class="program-card fade-up delay-2">
+          <div class="program-number">02</div>
+          <div class="program-icon"><i class="fas fa-fire-alt"></i></div>
+          <h3>Talleres Intensivos</h3>
+          <p>Jornadas de trabajo profundo en formato presencial o híbrido. Dinámicas vivenciales que generan resultados tangibles desde el primer día.</p>
+          <a href="contacto.html" class="btn btn-outline">Solicitar información</a>
+        </div>
+
+        <div class="program-card fade-up delay-3">
+          <div class="program-number">03</div>
+          <div class="program-icon"><i class="fas fa-route"></i></div>
+          <h3>Programas de Acompañamiento</h3>
+          <p>Procesos de 3 a 12 meses con sesiones periódicas, seguimiento continuo y medición de resultados. Para organizaciones que quieren transformación real y duradera.</p>
+          <a href="contacto.html" class="btn btn-outline">Solicitar información</a>
+        </div>
+
+        <div class="program-card fade-up delay-1">
+          <div class="program-number">04</div>
+          <div class="program-icon"><i class="fas fa-mountain"></i></div>
+          <h3>Retiros de Liderazgo</h3>
+          <p>Experiencias inmersivas fuera del entorno habitual. Retiros de 2 a 5 días donde el silencio, la naturaleza y el trabajo interior generan una transformación profunda.</p>
+          <a href="contacto.html" class="btn btn-outline">Solicitar información</a>
+        </div>
+
+        <div class="program-card fade-up delay-2">
+          <div class="program-number">05</div>
+          <div class="program-icon"><i class="fas fa-user-circle"></i></div>
+          <h3>Coaching Ejecutivo Individual</h3>
+          <p>Acompañamiento personalizado para CEOs, directivos y líderes que buscan un espacio de reflexión, crecimiento y transformación individual de alta profundidad.</p>
+          <a href="contacto.html" class="btn btn-outline">Solicitar información</a>
+        </div>
+
+        <div class="program-card fade-up delay-3">
+          <div class="program-number">06</div>
+          <div class="program-icon"><i class="fas fa-users"></i></div>
+          <h3>Formación de Facilitadores</h3>
+          <p>Capacitación para líderes internos que desean convertirse en agentes de cambio dentro de su propia organización, multiplicando el impacto del Método hacia adentro.</p>
+          <a href="contacto.html" class="btn btn-outline">Solicitar información</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="gold-separator"></div>
+
+  <!-- ============================================================
+       SECCIÓN 5 — BENEFICIOS PARA LA ORGANIZACIÓN
+       ============================================================ -->
+  <section class="section-padding">
+    <div class="container">
+      <div class="text-center fade-up" style="margin-bottom:60px;">
+        <span class="section-label">El Impacto</span>
+        <h2>Beneficios para<br /><span>tu organización</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="m-beneficios-grid">
+        <div class="m-beneficio-item fade-up delay-1">
+          <i class="fas fa-check"></i>
+          <span>Líderes con mayor inteligencia emocional y autoconciencia</span>
+        </div>
+        <div class="m-beneficio-item fade-up delay-2">
+          <i class="fas fa-check"></i>
+          <span>Equipos más cohesionados, motivados y productivos</span>
+        </div>
+        <div class="m-beneficio-item fade-up delay-1">
+          <i class="fas fa-check"></i>
+          <span>Reducción significativa del estrés y el burnout organizacional</span>
+        </div>
+        <div class="m-beneficio-item fade-up delay-2">
+          <i class="fas fa-check"></i>
+          <span>Cultura de bienestar que potencia el rendimiento sostenible</span>
+        </div>
+        <div class="m-beneficio-item fade-up delay-1">
+          <i class="fas fa-check"></i>
+          <span>Toma de decisiones más sabia, valiente y consciente</span>
+        </div>
+        <div class="m-beneficio-item fade-up delay-2">
+          <i class="fas fa-check"></i>
+          <span>Menor rotación de talento y mayor compromiso organizacional</span>
+        </div>
+        <div class="m-beneficio-item fade-up delay-1" style="grid-column: 1 / -1;">
+          <i class="fas fa-check"></i>
+          <span>Resultados sostenibles construidos desde la transformación humana profunda</span>
+        </div>
+      </div>
+
+      <div class="text-center fade-up delay-3">
+        <p style="font-family:var(--font-heading); font-size:clamp(1.3rem,2.5vw,2rem); color:var(--gold); font-style:italic; line-height:1.5;">
+          "Cuando las personas crecen, la organización crece."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       CTA FINAL
+       ============================================================ -->
+  <section class="cta-section">
+    <div class="container fade-up">
+      <span class="section-label">Empieza la transformación</span>
+      <h2>¿Listo para implementar<br /><span>el Método en tu empresa?</span></h2>
+      <p class="section-subtitle">
+        Conversemos. Diseñaremos juntos el proceso que tu organización necesita para evolucionar desde adentro.
+      </p>
+      <div class="cta-btns">
+        <a href="contacto.html" class="btn btn-gold">Solicitar el Método</a>
+        <a href="programas.html" class="btn btn-outline">Ver Programas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774954936/Logo_Vanessa_Varesse_Blanco_Sin_Fondo_paciud.png" alt="Vanessa Varesse" />
+          <p>Coach Transformacional | Mentora de Mentores | Speaker Internacional. Fundadora de TRASCENDENZA Latinoamérica.</p>
+          <img class="footer-logo-trascendenza" src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774954936/Logo_Trascendenza_Blanco_Sin_Fondo_ptkyh1.png" alt="Trascendenza" />
+        </div>
+        <div>
+          <p class="footer-title">Navegación</p>
+          <ul class="footer-links">
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="sobre-mi.html">Sobre Mí</a></li>
+            <li><a href="formacion.html">Formación</a></li>
+            <li><a href="metodo.html">Método</a></li>
+            <li><a href="logros.html">Logros</a></li>
+            <li><a href="empresas-alumnos.html">Empresas</a></li>
+            <li><a href="programas.html">Programas</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-title">Redes Sociales</p>
+          <div class="social-links">
+            <a href="https://www.instagram.com/vanessa.varessecoach/" target="_blank" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/vanessavaressetrascendenza" target="_blank" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.youtube.com/@vanessavaresse" target="_blank" class="social-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            <a href="https://pe.linkedin.com/in/vanessa-varesse-garcia-b4566124" target="_blank" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.tiktok.com/@vanessavaresse.coach" target="_blank" class="social-link" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://www.threads.com/@vanessa.varessecoach" target="_blank" class="social-link" aria-label="Threads"><i class="fab fa-threads"></i></a>
+            <a href="https://ru.pinterest.com/pin/297730225386920617/" target="_blank" class="social-link" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+          </div>
+          <div style="margin-top:24px;">
+            <p class="footer-title">Contacto</p>
+            <p style="font-size:.86rem; color:var(--gray);">+51 944 478 888</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 <span>Vanessa Varesse</span>. Todos los derechos reservados.</p>
+        <p>Hecho con <span>♥</span> para transformar vidas</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a href="https://wa.me/51944478888" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Tab functionality
+    const tabBtns  = document.querySelectorAll('.m-tab-btn');
+    const tabPanels = document.querySelectorAll('.m-tab-panel');
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected','false'); });
+        tabPanels.forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        btn.setAttribute('aria-selected','true');
+        document.getElementById(btn.dataset.tab).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
