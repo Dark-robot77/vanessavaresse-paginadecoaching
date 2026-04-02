@@ -206,10 +206,105 @@
       .m-leader-grid { grid-template-columns: 1fr; gap: 48px; }
       .m-leader-photo::after { display: none; }
       .m-pain-grid { grid-template-columns: 1fr; }
+      .historia-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
     }
     @media (max-width: 768px) {
       .m-tab-btn { padding: 12px 16px; font-size: .68rem; letter-spacing: 1px; }
       .m-beneficios-grid { grid-template-columns: 1fr; }
+      .pilar-card { padding: 28px 22px; }
+      .historia-visual-block { padding: 32px 24px; }
+      .pilar-row-1 { grid-template-columns: 1fr !important; }
+      .pilar-row-2 { grid-template-columns: 1fr !important; max-width: 100% !important; }
+    }
+
+    /* ===== HISTORIA DEL MÉTODO ===== */
+    .historia-visual-block {
+      position: relative;
+      padding: 50px 40px;
+      background: var(--dark);
+      border: 1px solid rgba(201,168,76,0.12);
+      overflow: hidden;
+      min-height: 340px;
+      display: flex;
+      align-items: flex-start;
+    }
+    .historia-visual-block::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+    .historia-quote-big {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 4vw, 4.2rem);
+      color: rgba(201,168,76,0.06);
+      line-height: 1.1;
+      pointer-events: none;
+      padding: 24px;
+      text-align: center;
+      font-style: italic;
+      font-weight: 700;
+      z-index: 0;
+    }
+    .historia-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ===== 5 PILARES ===== */
+    .pilar-card {
+      background: var(--dark-2);
+      border: 1px solid rgba(201,168,76,0.1);
+      padding: 44px 32px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .pilar-card:hover {
+      border-color: rgba(201,168,76,0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .pilar-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .pilar-card:hover::after { transform: scaleX(1); }
+    .pilar-numero {
+      font-family: var(--font-heading);
+      font-size: 4.5rem;
+      color: rgba(201,168,76,0.07);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .pilar-card h3 {
+      color: var(--gold);
+      font-size: 1.25rem;
+      margin-bottom: 14px;
+      font-family: var(--font-heading);
+    }
+    .pilar-card p {
+      font-size: 0.86rem;
+      color: var(--gray-light);
+      line-height: 1.8;
+    }
+    .pilar-icon {
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block;
     }
   </style>
 </head>
@@ -252,9 +347,69 @@
   </section>
 
   <!-- ============================================================
+       HISTORIA DEL MÉTODO
+       ============================================================ -->
+  <section id="historia" class="section-padding">
+    <div class="container">
+
+      <div class="historia-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:center; margin-bottom:70px;">
+
+        <!-- Izquierda: visual block -->
+        <div class="historia-visual-block fade-up">
+          <div class="historia-quote-big">
+            La cohesión<br/>no se impone.<br/>Se construye.
+          </div>
+          <div class="historia-content">
+            <span class="section-label">Desde el origen</span>
+            <div style="width:60px; height:2px; background:var(--gold); margin-bottom:24px;"></div>
+            <p style="color:var(--gray-light); line-height:1.8; margin-bottom:20px; font-size:0.92rem;">
+              Durante años muchas empresas han intentado mejorar la cohesión de sus equipos a través de talleres y dinámicas de integración.
+            </p>
+            <p style="font-family:var(--font-heading); font-size:1.1rem; color:var(--gold); font-style:italic; line-height:1.6;">
+              "La verdadera cohesión nace cuando las personas se sienten seguras, valoradas y emocionalmente equilibradas dentro del entorno laboral."
+            </p>
+          </div>
+        </div>
+
+        <!-- Derecha: texto -->
+        <div class="fade-up delay-2">
+          <span class="section-label">La Historia del Método</span>
+          <h2>Por qué nace el Método<br/><span>Shock de Liderazgo</span></h2>
+          <div class="divider divider-left"></div>
+          <p style="color:var(--gray-light); line-height:1.8; margin-bottom:16px;">
+            Un equipo no se fortalece únicamente con dinámicas o discursos motivacionales.
+          </p>
+          <p style="color:var(--gray-light); line-height:1.8; margin-bottom:16px;">
+            Cuando un colaborador carga estrés, inseguridades, conflictos internos o falta de confianza, eso inevitablemente se refleja en su manera de comunicarse, colaborar y liderar.
+          </p>
+          <p style="color:var(--gray-light); line-height:1.8; margin-bottom:16px;">
+            Por eso nace el <strong style="color:var(--gold)">Método Shock de Liderazgo Consciente®</strong>. Un enfoque que parte de una premisa fundamental: la transformación de una organización comienza con la transformación de las personas que la conforman.
+          </p>
+          <p style="color:var(--gray-light); line-height:1.8;">
+            A través de herramientas de desarrollo humano, regulación emocional, coaching y fortalecimiento de habilidades blandas, el método permite que los colaboradores rompan barreras internas, desarrollen mayor claridad personal y construyan relaciones laborales más conscientes y colaborativas.
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Frase convicción ancho completo -->
+      <div class="fade-up delay-3">
+        <blockquote class="quote-block" style="text-align:center; max-width:700px; margin:0 auto;">
+          "La cohesión de un equipo no se impone.
+          <em style="color:var(--gold); display:block; margin-top:10px;">Se construye cuando las personas evolucionan juntas.</em>"
+          <cite>— Principio central del Método Shock®</cite>
+        </blockquote>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="gold-separator"></div>
+
+  <!-- ============================================================
        SECCIÓN 1 — PROBLEMÁTICAS (PAIN POINTS)
        ============================================================ -->
-  <section class="section-padding">
+  <section id="problematicas" class="section-padding">
     <div class="container">
       <div style="display:grid; grid-template-columns:1fr 1fr; gap:70px; align-items:start;">
 
@@ -297,7 +452,7 @@
   <!-- ============================================================
        SECCIÓN 2 — QUÉ TRABAJA EL MÉTODO (TABS)
        ============================================================ -->
-  <section class="section-padding bg-dark m-canvas-section">
+  <section id="que-trabaja" class="section-padding bg-dark m-canvas-section">
     <canvas id="metodoCanvas" aria-hidden="true"></canvas>
     <div class="container">
 
@@ -415,12 +570,76 @@
     </div>
   </section>
 
+  <!-- ============================================================
+       LOS 5 PILARES DEL MÉTODO
+       ============================================================ -->
+  <section id="pilares" class="section-padding bg-dark">
+    <div class="container">
+
+      <div class="text-center fade-up" style="margin-bottom:70px;">
+        <span class="section-label">El Corazón del Método</span>
+        <h2>Los 5 Pilares del<br/><em class="shimmer-text">Método Shock®</em></h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" style="margin:0 auto; max-width:600px;">
+          Un modelo claro, profesional y memorable que convierte la transformación humana en resultados organizacionales concretos.
+        </p>
+      </div>
+
+      <!-- Fila 1: 3 pilares -->
+      <div class="pilar-row-1" style="display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-bottom:24px;">
+        <div class="pilar-card fade-up delay-1">
+          <div class="pilar-numero">01</div>
+          <span class="pilar-icon"><i class="fas fa-eye"></i></span>
+          <h3>Consciencia Personal</h3>
+          <p>Todo liderazgo comienza con la capacidad de mirarse a uno mismo. Trabajamos el autoconocimiento para que las personas reconozcan sus emociones, patrones y creencias que influyen en su manera de actuar dentro del entorno laboral.</p>
+        </div>
+        <div class="pilar-card fade-up delay-2">
+          <div class="pilar-numero">02</div>
+          <span class="pilar-icon"><i class="fas fa-unlock-alt"></i></span>
+          <h3>Liberación de Bloqueos</h3>
+          <p>Muchas limitaciones en el trabajo no provienen de falta de talento, sino de bloqueos emocionales, miedos o programaciones limitantes. Liberamos tensiones, gestionamos emociones y rompemos patrones para recuperar la confianza personal.</p>
+        </div>
+        <div class="pilar-card fade-up delay-3">
+          <div class="pilar-numero">03</div>
+          <span class="pilar-icon"><i class="fas fa-seedling"></i></span>
+          <h3>Mentalidad de Crecimiento</h3>
+          <p>Las organizaciones evolucionan cuando las personas desarrollan una mentalidad abierta al aprendizaje y al cambio. Fortalecemos la capacidad de adaptarse, asumir desafíos y construir una actitud de crecimiento continuo.</p>
+        </div>
+      </div>
+
+      <!-- Fila 2: 2 pilares centrados -->
+      <div class="pilar-row-2" style="display:grid; grid-template-columns:repeat(2,1fr); gap:24px; max-width:780px; margin:0 auto 40px;">
+        <div class="pilar-card fade-up delay-1">
+          <div class="pilar-numero">04</div>
+          <span class="pilar-icon"><i class="fas fa-crown"></i></span>
+          <h3>Liderazgo Consciente</h3>
+          <p>El liderazgo moderno no se basa solo en autoridad, sino en inspirar, escuchar y desarrollar a otros. Trabajamos inteligencia emocional, comunicación consciente y toma de decisiones para formar líderes que generen confianza real.</p>
+        </div>
+        <div class="pilar-card fade-up delay-2">
+          <div class="pilar-numero">05</div>
+          <span class="pilar-icon"><i class="fas fa-network-wired"></i></span>
+          <h3>Cohesión &amp; Cultura</h3>
+          <p>Un equipo fuerte se construye con confianza, respeto y colaboración real. Fortalecemos las relaciones, la comunicación efectiva y la construcción de una cultura organizacional saludable donde las personas se sientan valoradas y conectadas.</p>
+        </div>
+      </div>
+
+      <!-- Bloque convicción -->
+      <div class="fade-up delay-4" style="background:rgba(201,168,76,0.04); border:1px solid rgba(201,168,76,0.15); padding:40px; max-width:800px; margin:0 auto;">
+        <p style="font-family:var(--font-heading); font-size:1.3rem; color:var(--white-pure); font-style:italic; text-align:center; line-height:1.6; margin:0;">
+          "Cuando una persona eleva su consciencia, transforma su liderazgo.
+          <em style="color:var(--gold); display:block; margin-top:8px;">Y cuando el liderazgo cambia, toda la organización evoluciona."</em>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
   <div class="gold-separator"></div>
 
   <!-- ============================================================
        SECCIÓN 3 — ACOMPAÑAMIENTO PARA LÍDERES
        ============================================================ -->
-  <section class="section-padding">
+  <section id="lideres" class="section-padding">
     <div class="container">
       <div class="m-leader-grid">
 

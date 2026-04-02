@@ -10,6 +10,50 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ===== VISIÓN & CONVICCIÓN ===== */
+    .vision-statement {
+      background: var(--dark);
+      border-left: 3px solid var(--gold);
+      padding: 44px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .vision-statement::after {
+      content: '\201C';
+      position: absolute;
+      top: -20px; right: 20px;
+      font-family: var(--font-heading);
+      font-size: 8rem;
+      color: rgba(201,168,76,0.06);
+      line-height: 1;
+      pointer-events: none;
+    }
+    .mision-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 16px;
+      background: rgba(201,168,76,0.05);
+      border: 1px solid rgba(201,168,76,0.12);
+    }
+    .mision-item i {
+      color: var(--gold);
+      font-size: 0.9rem;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+    .mision-item span {
+      font-size: 0.82rem;
+      color: var(--gray-light);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+    @media (max-width: 900px) {
+      .vision-grid { grid-template-columns: 1fr !important; }
+      .vision-statement { padding: 32px 24px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -188,6 +232,83 @@
       </div>
     </div>
   </section>
+
+  <!-- ============================================================
+       VISIÓN & CONVICCIÓN
+       ============================================================ -->
+  <section id="vision" class="section-padding">
+    <div class="container">
+
+      <div class="text-center fade-up" style="margin-bottom:60px;">
+        <span class="section-label">Nuestra Visión</span>
+        <h2>Organizaciones donde el crecimiento<br/><span>va de la mano con el bienestar</span></h2>
+        <div class="divider"></div>
+      </div>
+
+      <div class="vision-grid" style="display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start;">
+
+        <!-- Izquierda: vision statement -->
+        <div class="vision-statement fade-up delay-1">
+          <span class="section-label">Creemos en...</span>
+          <p style="font-size:1.05rem; color:var(--gray-light); line-height:1.8; margin-bottom:20px;">
+            Creemos en organizaciones donde el crecimiento profesional vaya de la mano con el bienestar humano.
+          </p>
+          <p style="color:var(--gray-light); line-height:1.8;">
+            Porque las empresas del futuro no solo buscan resultados…
+          </p>
+          <p style="font-family:var(--font-heading); font-size:1.2rem; color:var(--gold); font-style:italic; line-height:1.6; margin-top:16px;">
+            buscan personas conscientes, líderes humanos y equipos emocionalmente saludables.
+          </p>
+        </div>
+
+        <!-- Derecha: misión -->
+        <div class="fade-up delay-2">
+          <span class="section-label">Nuestra Misión</span>
+          <h3 style="color:var(--white-pure); font-size:clamp(1.3rem,2.5vw,1.9rem); margin-bottom:20px; font-family:var(--font-heading);">
+            Liberamos el potencial humano<br/><span style="color:var(--gold)">dentro de las organizaciones</span>
+          </h3>
+          <div class="divider divider-left"></div>
+          <p style="color:var(--gray-light); line-height:1.8; margin-bottom:16px;">
+            Transformamos bloqueos emocionales, mentalidad y liderazgo para crear equipos más conscientes, comprometidos y productivos.
+          </p>
+          <p style="color:var(--gray-light); line-height:1.8; margin-bottom:32px;">
+            No se trata solo de capacitar. Se trata de transformar la manera en que las personas se ven a sí mismas, se relacionan con los demás y lideran desde adentro.
+          </p>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="mision-item">
+              <i class="fas fa-brain"></i>
+              <span>Transformación de mentalidad y bloqueos emocionales</span>
+            </div>
+            <div class="mision-item">
+              <i class="fas fa-crown"></i>
+              <span>Desarrollo de liderazgo consciente y humano</span>
+            </div>
+            <div class="mision-item">
+              <i class="fas fa-users"></i>
+              <span>Cohesión y fortalecimiento de equipos</span>
+            </div>
+            <div class="mision-item">
+              <i class="fas fa-heart"></i>
+              <span>Bienestar emocional corporativo sostenible</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Frase cierre ancho completo -->
+      <div class="fade-up delay-3" style="margin-top:60px;">
+        <blockquote class="quote-block" style="text-align:center; max-width:700px; margin:0 auto;">
+          "Cuando una persona sana, un líder despierta.
+          <em style="color:var(--gold); display:block; margin-top:10px;">Y cuando un líder despierta, toda la organización evoluciona.</em>"
+          <cite>— Vanessa Varesse</cite>
+        </blockquote>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="gold-separator"></div>
 
   <!-- CTA -->
   <section class="cta-section">

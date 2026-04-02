@@ -10,6 +10,135 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ===== RESULTADOS MEDIBLES ===== */
+    .resultado-card {
+      background: var(--dark);
+      border: 1px solid rgba(201,168,76,0.12);
+      padding: 36px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    .resultado-card:hover {
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 36px rgba(0,0,0,0.4);
+    }
+    .resultado-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .resultado-card:hover::before { transform: scaleX(1); }
+    .resultado-numero {
+      font-family: var(--font-heading);
+      font-size: clamp(2.8rem, 4vw, 3.8rem);
+      color: var(--gold);
+      font-weight: 700;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .resultado-card h4 {
+      color: var(--white-pure);
+      font-size: 0.82rem;
+      font-family: var(--font-body);
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .resultado-card p {
+      font-size: 0.78rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+
+    /* ===== SERVICIOS CORPORATIVOS ===== */
+    .servicio-featured {
+      background: linear-gradient(135deg, var(--dark-2) 0%, rgba(201,168,76,0.06) 100%);
+      border: 1px solid rgba(201,168,76,0.25);
+      padding: 50px 56px;
+      margin-bottom: 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .servicio-featured::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: linear-gradient(to bottom, var(--gold), var(--gold-light));
+    }
+    .servicio-featured h3 {
+      color: var(--gold);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      margin-bottom: 16px;
+      font-family: var(--font-heading);
+    }
+    .servicio-featured p {
+      font-size: 0.92rem;
+      color: var(--gray-light);
+      line-height: 1.8;
+      max-width: 700px;
+      margin-bottom: 28px;
+    }
+    .servicio-card {
+      background: var(--dark-2);
+      border: 1px solid rgba(201,168,76,0.1);
+      padding: 36px 28px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .servicio-card:hover {
+      border-color: rgba(201,168,76,0.35);
+      transform: translateY(-5px);
+      box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+    }
+    .servicio-card:hover .servicio-card-line { transform: scaleX(1); }
+    .servicio-card-line {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .servicio-icon {
+      font-size: 1.8rem;
+      color: var(--gold);
+      margin-bottom: 18px;
+      display: block;
+    }
+    .servicio-card h3 {
+      color: var(--white-pure);
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      font-family: var(--font-heading);
+    }
+    .servicio-card p {
+      font-size: 0.83rem;
+      color: var(--gray);
+      line-height: 1.75;
+      margin-bottom: 20px;
+      flex: 1;
+    }
+    @media (max-width: 768px) {
+      .resultado-grid { grid-template-columns: 1fr !important; }
+      .servicio-featured { padding: 36px 28px; }
+      .resultado-card { padding: 28px 20px; }
+      .servicio-row-1 { grid-template-columns: 1fr !important; }
+      .servicio-row-2 { grid-template-columns: 1fr !important; max-width: 100% !important; }
+    }
+  </style>
 </head>
 <body>
 
@@ -73,6 +202,65 @@
     </div>
   </section>
 
+  <!-- ============================================================
+       RESULTADOS MEDIBLES
+       ============================================================ -->
+  <section id="resultados" class="section-padding">
+    <div class="container">
+
+      <div class="text-center fade-up" style="margin-bottom:60px;">
+        <span class="section-label">Impacto Real</span>
+        <h2>Resultados que se<br/><span>miden y se sienten</span></h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" style="margin:0 auto; max-width:580px;">
+          Las organizaciones que implementan el Método Shock de Liderazgo Consciente® reportan cambios visibles en su cultura, sus equipos y sus números.
+        </p>
+      </div>
+
+      <div class="resultado-grid" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px;">
+        <div class="resultado-card fade-up delay-1">
+          <div class="resultado-numero">↓ 40%</div>
+          <h4>Reducción del Estrés</h4>
+          <p>Reducción visible del estrés laboral reportada por los equipos tras el proceso.</p>
+        </div>
+        <div class="resultado-card fade-up delay-2">
+          <div class="resultado-numero">↑ 85%</div>
+          <h4>Mayor Compromiso</h4>
+          <p>De los colaboradores reportan mayor compromiso y motivación hacia la empresa.</p>
+        </div>
+        <div class="resultado-card fade-up delay-3">
+          <div class="resultado-numero">3×</div>
+          <h4>Mejor Comunicación</h4>
+          <p>Mejora en la comunicación interna y resolución de conflictos entre equipos.</p>
+        </div>
+        <div class="resultado-card fade-up delay-1">
+          <div class="resultado-numero">↑ 70%</div>
+          <h4>Clima Laboral</h4>
+          <p>De mejora en el clima organizacional medido en encuestas post-proceso.</p>
+        </div>
+        <div class="resultado-card fade-up delay-2">
+          <div class="resultado-numero">100%</div>
+          <h4>Líderes Conscientes</h4>
+          <p>De los líderes participantes desarrollan mayor inteligencia emocional aplicada.</p>
+        </div>
+        <div class="resultado-card fade-up delay-3">
+          <div class="resultado-numero">↑ 60%</div>
+          <h4>Productividad</h4>
+          <p>De incremento en productividad desde el bienestar emocional y la cohesión del equipo.</p>
+        </div>
+      </div>
+
+      <div class="fade-up delay-4" style="text-align:center; margin-top:24px;">
+        <p style="font-size:0.72rem; color:var(--gray); font-style:italic;">
+          * Datos basados en reportes y feedback de empresas y organizaciones que han trabajado con el Método Shock de Liderazgo Consciente®.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="gold-separator"></div>
+
   <!-- EMPRESAS -->
   <section class="section-padding">
     <div class="container">
@@ -114,6 +302,92 @@
           </div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SERVICIOS CORPORATIVOS
+       ============================================================ -->
+  <section id="servicios" class="section-padding bg-dark">
+    <div class="container">
+
+      <div class="text-center fade-up" style="margin-bottom:60px;">
+        <span class="section-label">Nuestros Servicios</span>
+        <h2>¿Qué podemos hacer<br/><span>por tu organización?</span></h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" style="margin:0 auto; max-width:620px;">
+          A través del Método Shock de Liderazgo Consciente® ofrecemos programas y talleres diseñados para fortalecer el liderazgo, el bienestar emocional y el desarrollo humano dentro de las organizaciones.
+        </p>
+      </div>
+
+      <!-- Card destacada -->
+      <div class="servicio-featured fade-up">
+        <span class="metodo-badge-pill" style="display:inline-block; margin-bottom:20px;">Programa Principal</span>
+        <h3>Programa Integral de Transformación y Liderazgo Consciente</h3>
+        <p>Nuestro programa más completo, donde integramos diferentes herramientas de desarrollo humano y liderazgo para generar una transformación profunda en los colaboradores y equipos.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px 24px; margin-bottom:32px;">
+          <div style="display:flex; align-items:center; gap:10px; font-size:0.84rem; color:var(--gray-light);"><i class="fas fa-check" style="color:var(--gold); flex-shrink:0;"></i>Desarrollo de habilidades blandas</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:0.84rem; color:var(--gray-light);"><i class="fas fa-check" style="color:var(--gold); flex-shrink:0;"></i>Fortalecimiento de autoconfianza y empoderamiento</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:0.84rem; color:var(--gray-light);"><i class="fas fa-check" style="color:var(--gold); flex-shrink:0;"></i>Trabajo de mentalidad para el éxito</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:0.84rem; color:var(--gray-light);"><i class="fas fa-check" style="color:var(--gold); flex-shrink:0;"></i>Reprogramación mental y bloqueos</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:0.84rem; color:var(--gray-light);"><i class="fas fa-check" style="color:var(--gold); flex-shrink:0;"></i>Liderazgo consciente</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:0.84rem; color:var(--gray-light);"><i class="fas fa-check" style="color:var(--gold); flex-shrink:0;"></i>Bienestar emocional y regulación del estrés</div>
+          <div style="display:flex; align-items:center; gap:10px; font-size:0.84rem; color:var(--gray-light);"><i class="fas fa-check" style="color:var(--gold); flex-shrink:0;"></i>Redefinición de identidad de éxito</div>
+        </div>
+        <a href="contacto.html" class="btn btn-gold">Solicitar Programa Integral</a>
+      </div>
+
+      <!-- Fila 1: 3 cards -->
+      <div class="servicio-row-1" style="display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-bottom:20px;">
+        <div class="servicio-card fade-up delay-1">
+          <span class="servicio-icon"><i class="fas fa-handshake-angle"></i></span>
+          <h3>Talleres de Cohesión de Equipos</h3>
+          <p>Fortalecemos la confianza, la comunicación y la colaboración real entre los miembros del equipo, creando un entorno donde las personas se sientan escuchadas, valoradas y alineadas con los objetivos de la empresa.</p>
+          <a href="contacto.html" class="btn btn-outline" style="padding:10px 22px; font-size:0.7rem;">Solicitar información</a>
+          <div class="servicio-card-line"></div>
+        </div>
+        <div class="servicio-card fade-up delay-2">
+          <span class="servicio-icon"><i class="fas fa-comments"></i></span>
+          <h3>Desarrollo de Habilidades Blandas</h3>
+          <p>Comunicación efectiva, inteligencia emocional, liderazgo, trabajo en equipo y resolución de conflictos para crear equipos más conscientes y productivos.</p>
+          <a href="contacto.html" class="btn btn-outline" style="padding:10px 22px; font-size:0.7rem;">Solicitar información</a>
+          <div class="servicio-card-line"></div>
+        </div>
+        <div class="servicio-card fade-up delay-3">
+          <span class="servicio-icon"><i class="fas fa-microphone-alt"></i></span>
+          <h3>Charlas Inspiracionales</h3>
+          <p>Conferencias diseñadas para inspirar y generar reflexión dentro de las organizaciones, fortaleciendo la mentalidad positiva, el compromiso y la motivación de los equipos.</p>
+          <a href="contacto.html" class="btn btn-outline" style="padding:10px 22px; font-size:0.7rem;">Solicitar información</a>
+          <div class="servicio-card-line"></div>
+        </div>
+      </div>
+
+      <!-- Fila 2: 2 cards centradas -->
+      <div class="servicio-row-2" style="display:grid; grid-template-columns:repeat(2,1fr); gap:20px; max-width:780px; margin:0 auto;">
+        <div class="servicio-card fade-up delay-1">
+          <span class="servicio-icon"><i class="fas fa-spa"></i></span>
+          <h3>Talleres de Bienestar Emocional</h3>
+          <p>Espacios para gestionar el estrés y mejorar el bienestar emocional a través de respiración consciente, mindfulness, meditación, técnicas de relajación y sesiones de descarga emocional corporativa.</p>
+          <a href="contacto.html" class="btn btn-outline" style="padding:10px 22px; font-size:0.7rem;">Solicitar información</a>
+          <div class="servicio-card-line"></div>
+        </div>
+        <div class="servicio-card fade-up delay-2">
+          <span class="servicio-icon"><i class="fas fa-chart-line"></i></span>
+          <h3>Mentalidad de Éxito y Ventas Conscientes</h3>
+          <p>Transformamos la mentalidad del equipo comercial fortaleciendo la confianza, la seguridad personal y la capacidad de conectar con los clientes desde una visión de valor y abundancia.</p>
+          <a href="contacto.html" class="btn btn-outline" style="padding:10px 22px; font-size:0.7rem;">Solicitar información</a>
+          <div class="servicio-card-line"></div>
+        </div>
+      </div>
+
+      <!-- Frase de cierre -->
+      <div class="fade-up delay-3" style="padding:40px; background:rgba(201,168,76,0.04); border:1px solid rgba(201,168,76,0.15); max-width:700px; margin:60px auto 0; text-align:center;">
+        <p style="font-family:var(--font-heading); font-size:1.4rem; color:var(--white-pure); font-style:italic; text-align:center; line-height:1.6; margin:0;">
+          "Cuando las personas desarrollan mayor consciencia, confianza y bienestar emocional…
+          <em style="color:var(--gold); display:block; margin-top:8px; font-size:1.2rem;">los equipos se fortalecen y las organizaciones evolucionan."</em>
+        </p>
+      </div>
+
     </div>
   </section>
 
