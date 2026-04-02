@@ -37,7 +37,18 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-bg" style="background-image: url('https://res.cloudinary.com/drj4pwy9t/image/upload/v1774954486/imagen_de_fondo_vanessa_r63lnh.jpg');"></div>
+    <div class="hero-bg" style="background-image: url('https://res.cloudinary.com/drj4pwy9t/image/upload/v1775110331/imagen_4x_mrysig.webp');">
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        aria-hidden="true"
+      >
+        <source src="https://res.cloudinary.com/drj4pwy9t/video/upload/q_auto,vc_auto/v1775112609/video_de_fondo_heropage_p5tf8u.mp4" type="video/mp4" />
+      </video>
+    </div>
     <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-content fade-up">
@@ -45,9 +56,9 @@
           <div class="hero-line"></div>
           <span>Coach Transformacional</span>
         </div>
-        <h1>Despierta el<br /><em>Líder</em> que ya eres</h1>
+        <h1>Desarrolla <em>líderes</em><br />que eleven el rendimiento<br />y la cultura de tu organización</h1>
         <p class="hero-subtitle">
-          Programas de alto impacto para ejecutivos, directivos y equipos que quieren despertar su verdadera identidad, conectar con su propósito y liderar desde dentro.
+          Programas de coaching ejecutivo diseñados para mejorar la toma de decisiones, reducir conflictos y potenciar equipos de alto desempeño.
         </p>
         <div class="hero-roles">
           <span>Coach Transformacional</span>
@@ -56,8 +67,8 @@
           <span>Fundadora TRASCENDENZA</span>
         </div>
         <div class="hero-btns" style="margin-bottom: 60px;">
-          <a href="programas.html" class="btn btn-gold">Conoce los Programas</a>
-          <a href="contacto.html" class="btn btn-outline">Contáctame</a>
+          <a href="programas.html" class="btn btn-gold">Solicitar propuesta</a>
+          <a href="contacto.html" class="btn btn-outline">Agendar diagnóstico ejecutivo</a>
         </div>
       </div>
     </div>
@@ -70,24 +81,52 @@
   <!-- STATS BAR -->
   <section class="stats-bar">
     <div class="container">
+
+      <!-- Header -->
+      <div class="stats-header fade-up">
+        <h2 class="stats-title">Resultados que impactan organizaciones</h2>
+        <p class="stats-subtitle">Empresas y líderes que han confiado en nuestro proceso de transformación.</p>
+      </div>
+
+      <!-- Métricas -->
       <div class="stats-grid">
-        <div class="stat-item fade-up">
-          <h3 class="stat-counter" data-target="2000" data-suffix="+">2000+</h3>
-          <p>Alumnos Entrenados</p>
-        </div>
         <div class="stat-item fade-up delay-1">
-          <h3 class="stat-counter" data-target="11" data-suffix="+">11+</h3>
-          <p>Condecoraciones Internacionales</p>
+          <h3 class="stat-counter" data-target="2000" data-suffix="+">2000+</h3>
+          <p>Líderes y profesionales transformados</p>
         </div>
         <div class="stat-item fade-up delay-2">
-          <h3 class="stat-counter" data-target="6" data-suffix="+">6+</h3>
-          <p>Países de Presencia</p>
+          <h3 class="stat-counter" data-target="11" data-suffix="+">11+</h3>
+          <p>Colaboraciones con organizaciones internacionales</p>
         </div>
         <div class="stat-item fade-up delay-3">
+          <h3 class="stat-counter" data-target="6" data-suffix="+">6+</h3>
+          <p>Países con implementación del método</p>
+        </div>
+        <div class="stat-item fade-up delay-4">
           <h3 class="stat-counter" data-target="6" data-suffix=" años">6 años</h3>
-          <p>Speaker del Año</p>
+          <p>Transformando liderazgo organizacional</p>
         </div>
       </div>
+
+      <!-- Logos -->
+      <div class="stats-logos-wrap fade-up delay-2">
+        <span class="stats-logos-label">Organizaciones que han confiado en TRASCENDENZA</span>
+        <div class="stats-logos-grid">
+          <a href="empresas-alumnos.html" class="stats-logo-item" aria-label="Importa y Emprende Perú">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/f_auto,q_auto/v1775118885/logo_importa_y_emprende_peru_ycvnof.png"
+                 alt="Importa y Emprende Perú" loading="lazy" />
+          </a>
+          <a href="empresas-alumnos.html" class="stats-logo-item" aria-label="7 Runway">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/f_auto,q_auto/v1775118885/7runway_eorwi9.png"
+                 alt="7 Runway" loading="lazy" />
+          </a>
+          <a href="empresas-alumnos.html" class="stats-logo-item" aria-label="EsSalud">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/f_auto,q_auto/v1775118885/logo-essalud_trt80t.jpg"
+                 alt="EsSalud" loading="lazy" />
+          </a>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -98,40 +137,69 @@
     <canvas id="metodoCanvas" aria-hidden="true"></canvas>
 
     <div class="container metodo-preview-inner">
+      <!-- Badge -->
       <div class="metodo-preview-badge fade-up">
         <span class="metodo-badge-pill">Método Exclusivo</span>
         <span class="metodo-badge-reg">Registrado ®</span>
       </div>
 
+      <!-- Título -->
       <h2 class="metodo-preview-title fade-up delay-1">
-        Método Shock de<br />
-        <em class="shimmer-text">Liderazgo Consciente<sup>®</sup></em>
+        Un método estructurado para<br />
+        <em class="shimmer-text">transformar el liderazgo y el rendimiento organizacional</em>
       </h2>
 
+      <!-- Subtítulo -->
       <p class="metodo-preview-subtitle fade-up delay-2">
-        Las empresas del presente entienden algo fundamental:<br />
-        <strong>el bienestar emocional y mental impacta directamente en el liderazgo,<br class="br-desktop" /> la cultura organizacional y los resultados.</strong>
+        Intervenciones de alto impacto para organizaciones que necesitan líderes más claros,<br class="br-desktop" /> equipos más cohesionados y resultados medibles.
       </p>
 
-      <div class="metodo-preview-pills fade-up delay-3">
-        <span class="metodo-pill"><i class="fas fa-brain"></i> Coaching Transformacional</span>
-        <span class="metodo-pill"><i class="fas fa-heart"></i> Inteligencia Emocional</span>
-        <span class="metodo-pill"><i class="fas fa-bolt"></i> Mentalidad & Creencias</span>
-        <span class="metodo-pill"><i class="fas fa-wind"></i> Regulación Emocional</span>
-        <span class="metodo-pill"><i class="fas fa-star"></i> Liderazgo Consciente</span>
+      <!-- Pain points -->
+      <div class="metodo-pain-intro fade-up delay-3">
+        <p class="metodo-pain-label">Lo que frenan el crecimiento de las organizaciones:</p>
+        <ul class="metodo-pain-list">
+          <li>Alta rotación y baja retención de talento clave</li>
+          <li>Liderazgo reactivo e inconsistente bajo presión</li>
+          <li>Equipos fragmentados sin dirección estratégica</li>
+          <li>Cultura organizacional sin cohesión ni propósito</li>
+        </ul>
       </div>
 
-      <div class="metodo-preview-cta fade-up delay-4">
+      <!-- Fases del método -->
+      <div class="metodo-phases-grid fade-up delay-4">
+        <div class="metodo-phase-card">
+          <span class="metodo-phase-num">01</span>
+          <h3 class="metodo-phase-title">Diagnóstico estratégico</h3>
+          <p class="metodo-phase-desc">Mapeamos las brechas de liderazgo, focos de tensión y dinámicas disfuncionales que frenan el rendimiento de tu organización.</p>
+        </div>
+        <div class="metodo-phase-card">
+          <span class="metodo-phase-num">02</span>
+          <h3 class="metodo-phase-title">Intervención en liderazgo</h3>
+          <p class="metodo-phase-desc">El líder gana claridad, autorregulación y capacidad de decisión. Menos reactividad, más impacto en cada interacción.</p>
+        </div>
+        <div class="metodo-phase-card">
+          <span class="metodo-phase-num">03</span>
+          <h3 class="metodo-phase-title">Integración en equipos</h3>
+          <p class="metodo-phase-desc">Equipos que resuelven conflictos con rapidez, se comunican con precisión y operan alineados hacia un mismo objetivo.</p>
+        </div>
+        <div class="metodo-phase-card">
+          <span class="metodo-phase-num">04</span>
+          <h3 class="metodo-phase-title">Seguimiento y consolidación</h3>
+          <p class="metodo-phase-desc">Validamos el cambio con métricas de desempeño. El proceso no termina con el taller — termina con resultados sostenidos.</p>
+        </div>
+      </div>
+
+      <!-- Cierre -->
+      <p class="metodo-closing fade-up delay-5">
+        Más de 2.000 líderes transformados en 6 países. El siguiente puede ser tu organización.
+      </p>
+
+      <!-- CTA -->
+      <div class="metodo-preview-cta fade-up delay-5">
         <a href="metodo.html" class="btn btn-gold">
           <i class="fas fa-arrow-right"></i>&nbsp; Conocer el Método Completo
         </a>
-        <a href="contacto.html" class="btn btn-outline">Solicitar información</a>
-      </div>
-
-      <div class="metodo-preview-quote fade-up delay-5">
-        <span class="metodo-quote-line"></span>
-        <p>Cuando una persona se transforma internamente… <em>también transforma la forma en que lidera.</em></p>
-        <span class="metodo-quote-line"></span>
+        <a href="contacto.html" class="btn btn-outline">Solicitar propuesta ejecutiva</a>
       </div>
     </div>
   </section>
@@ -196,42 +264,136 @@
     </div>
   </section>
 
-  <!-- PROGRAMAS (preview) -->
-  <section class="section-padding bg-dark">
+  <!-- SERVICIOS B2B -->
+  <section class="section-padding bg-dark" id="servicios">
     <div class="container">
-      <div class="text-center fade-up" style="margin-bottom: 60px;">
-        <span class="section-label">Programas para Empresas</span>
-        <h2 class="section-title">Transforma a tu <span>Equipo</span></h2>
+
+      <!-- Encabezado -->
+      <div class="text-center fade-up" style="margin-bottom: 72px;">
+        <span class="section-label">Soluciones para Empresas</span>
+        <h2 class="section-title">Soluciones para transformar el liderazgo<br /><span>y mejorar el rendimiento de tu organización</span></h2>
         <div class="divider"></div>
+        <p class="services-proof">Más de 2000 líderes y equipos han pasado por procesos de transformación con este enfoque.</p>
         <p class="section-subtitle" style="margin: 0 auto;">
-          Diseñados para ejecutivos y organizaciones que buscan un cambio real. No hablamos de herramientas genéricas — hablamos de un renacer de la identidad y el liderazgo.
+          Intervenciones estructuradas para directivos, equipos y organizaciones que necesitan mejorar resultados, alinear equipos y tomar decisiones más efectivas.
         </p>
       </div>
-      <div class="programs-grid">
-        <div class="program-card fade-up delay-1">
-          <div class="program-icon"><i class="fas fa-wind"></i></div>
-          <h3>Respiración Consciente</h3>
-          <p>Técnicas de respiración aplicadas al alto rendimiento ejecutivo. Gestiona la presión y activa tu energía con intención.</p>
-          <a href="programas.html" class="btn btn-outline">Ver programa</a>
+
+      <p class="services-guidance fade-up">Selecciona el nivel de intervención que mejor se adapta a tu organización:</p>
+
+      <!-- Cards de servicio -->
+      <div class="services-grid">
+
+        <!-- Servicio 1 -->
+        <div class="service-card fade-up delay-1">
+          <div class="service-card-top">
+            <span class="service-card-target">Para directivos y líderes</span>
+            <div class="service-card-icon"><i class="fas fa-user-tie"></i></div>
+            <h3 class="service-card-title">Coaching Ejecutivo</h3>
+            <p class="service-card-desc">Proceso 1:1 de alta intensidad para desarrollar claridad estratégica, autorregulación emocional y liderazgo de alto impacto en entornos de alta exigencia y toma de decisiones críticas.</p>
+          </div>
+          <div class="service-card-meta">
+            <div class="service-card-row">
+              <span class="service-meta-label">Desafío</span>
+              <span class="service-meta-text">Decisiones bajo presión, reactividad crónica y pérdida de foco que comprometen el liderazgo y los resultados del negocio.</span>
+            </div>
+            <div class="service-card-row service-card-row--outcome">
+              <span class="service-meta-label">Resultado</span>
+              <span class="service-meta-text">Mayor claridad directiva, decisiones más efectivas y un liderazgo que genera confianza y un impacto directo en el rendimiento de la organización.</span>
+            </div>
+          </div>
+          <a href="contacto.html" class="btn btn-outline service-card-cta">Agendar diagnóstico ejecutivo</a>
         </div>
-        <div class="program-card fade-up delay-2">
-          <div class="program-icon"><i class="fas fa-heart"></i></div>
-          <h3>Inteligencia Emocional</h3>
-          <p>Desarrollo de competencias emocionales para líderes que quieren conectar, inspirar y generar equipos de alto impacto.</p>
-          <a href="programas.html" class="btn btn-outline">Ver programa</a>
+
+        <!-- Servicio 2 -->
+        <div class="service-card service-card--featured fade-up delay-2">
+          <div class="service-card-top">
+            <span class="badge-featured">Más demandado</span>
+            <span class="service-card-target">Para equipos y mandos medios</span>
+            <div class="service-card-icon"><i class="fas fa-users"></i></div>
+            <h3 class="service-card-title">Programas para Equipos</h3>
+            <p class="service-card-desc">Intervenciones grupales diseñadas para restaurar la alineación, mejorar la comunicación crítica y elevar el rendimiento colectivo de forma sostenida.</p>
+          </div>
+          <div class="service-card-meta">
+            <div class="service-card-row">
+              <span class="service-meta-label">Desafío</span>
+              <span class="service-meta-text">Equipos desalineados, conflictos no gestionados y falta de cohesión que afectan directamente la productividad y el clima laboral.</span>
+            </div>
+            <div class="service-card-row service-card-row--outcome">
+              <span class="service-meta-label">Resultado</span>
+              <span class="service-meta-text">Equipos cohesionados, con comunicación efectiva y un rendimiento colectivo alineado a objetivos y resultados medibles para el negocio.</span>
+            </div>
+          </div>
+          <a href="contacto.html" class="btn btn-gold service-card-cta">Evaluar el estado de mi equipo</a>
         </div>
-        <div class="program-card fade-up delay-3">
-          <div class="program-icon"><i class="fas fa-brain"></i></div>
-          <h3>Mentalidad Ejecutiva</h3>
-          <p>Un renacer de la identidad del líder. Conecta con una nueva mentalidad que te posicione donde siempre quisiste estar.</p>
-          <a href="programas.html" class="btn btn-outline">Ver programa</a>
+
+        <!-- Servicio 3 -->
+        <div class="service-card fade-up delay-3">
+          <div class="service-card-top">
+            <span class="service-card-target">Para empresas y organizaciones</span>
+            <div class="service-card-icon"><i class="fas fa-building"></i></div>
+            <h3 class="service-card-title">Transformación Organizacional</h3>
+            <p class="service-card-desc">Programa sistémico de cambio cultural y de liderazgo para organizaciones que necesitan evolucionar de raíz, no solo corregir síntomas.</p>
+          </div>
+          <div class="service-card-meta">
+            <div class="service-card-row">
+              <span class="service-meta-label">Desafío</span>
+              <span class="service-meta-text">Alta rotación, cultura organizacional fragmentada y liderazgo inconsistente que frenan el crecimiento y comprometen la retención de talento.</span>
+            </div>
+            <div class="service-card-row service-card-row--outcome">
+              <span class="service-meta-label">Resultado</span>
+              <span class="service-meta-text">Cultura organizacional sólida, líderes alineados al propósito y transformación sostenible con impacto directo en el desempeño, la cultura y la retención del talento.</span>
+            </div>
+          </div>
+          <a href="contacto.html" class="btn btn-outline service-card-cta">Solicitar propuesta estratégica</a>
         </div>
+
       </div>
-      <div class="text-center" style="margin-top: 48px;">
-        <a href="programas.html" class="btn btn-gold">Ver todos los Programas</a>
-      </div>
+
+      <!-- Trust statement -->
+      <p class="services-trust fade-up" style="margin-top: 56px;">
+        Cada intervención se adapta al contexto y nivel de madurez organizacional, integrando seguimiento continuo, métricas de impacto y acompañamiento en cada fase del proceso.
+      </p>
+
+      <!-- Footer CTA -->
+      <div class="text-center" style="margin-top: 40px;">
+        <a href="contacto.html" class="btn btn-gold">Solicitar diagnóstico organizacional</a>
+      </div>  
+
     </div>
   </section>
+<!-- TESTIMONIOS --> 
+ <section class="section-padding testimonials-section" id="testimonios">
+   <div class="container"> <!-- Encabezado --> 
+    <div class="text-center fade-up" style="margin-bottom: 64px;"> <span class="section-label">Resultados</span>
+       <h2 class="section-title">Resultados reales en <span>personas que lideran</span></h2> 
+       <div class="divider"></div> 
+       <p class="section-subtitle" style="margin: 0 auto;"> Experiencias de profesionales que han pasado por procesos de transformación y hoy lideran con mayor claridad, confianza y efectividad. </p> 
+      <p class="testimonials-proof">
+      Profesionales de distintos sectores y países han pasado por este proceso, aplicando lo aprendido directamente en sus entornos de trabajo.
+      </p>
+      </div>
+      
+       <!-- Tarjetas de testimonio -->
+         <div class="testimonials-grid">
+           <div class="testimonial-card fade-up delay-1">
+             <div class="testimonial-quote-mark">"</div>
+              <blockquote class="testimonial-quote"> Antes tomaba decisiones desde la urgencia. Hoy tomo decisiones desde la claridad. Ese cambio transformó no solo mi liderazgo, sino también los resultados de mi equipo. </blockquote>
+              <div class="testimonial-author">
+                 <div class="testimonial-author-info"> <strong>Gerente General</strong>
+                   <span>Empresa de servicios — Perú</span>
+                   </div> 
+                  </div>
+                 </div>
+                 <div class="testimonial-card testimonial-card--highlighted fade-up delay-2"> <div class="testimonial-quote-mark">"</div> <blockquote class="testimonial-quote"> El proceso me permitió identificar patrones de conducta que limitaban mi capacidad de influencia. El impacto fue inmediato en la dinámica del equipo directivo. </blockquote> <div class="testimonial-author"> <div class="testimonial-author-info"> <strong>Directora de Recursos Humanos</strong> <span>Organización internacional — España</span> </div> </div> </div> <div class="testimonial-card fade-up delay-3"> <div class="testimonial-quote-mark">"</div> <blockquote class="testimonial-quote"> Llevaba años gestionando equipos. Fue aquí donde entendí que liderar empieza por entenderse a uno mismo. Los resultados operativos mejoraron en consecuencia. </blockquote> <div class="testimonial-author"> <div class="testimonial-author-info"> <strong>Director de Operaciones</strong> <span>Sector salud — Bolivia</span> </div> </div> </div> <div class="testimonial-card fade-up delay-4"> <div class="testimonial-quote-mark">"</div> <blockquote class="testimonial-quote"> El equipo pasó de trabajar con fricciones constantes a operar con una comunicación mucho más efectiva. La mejora fue estructural, no superficial. </blockquote> <div class="testimonial-author"> <div class="testimonial-author-info"> <strong>CEO</strong> <span>Empresa tecnológica — Colombia</span> </div> </div> </div> </div> <!-- Prueba visual --> <div class="visual-proof fade-up" style="margin-top: 80px;"> <p class="visual-proof-label">Procesos reales en entornos organizacionales activos</p> <div class="visual-proof-grid"> <div class="visual-proof-item"> <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/f_auto,q_auto/v1775130017/vanessa_facilitando_taller_en_runway_7_guquj5.jpg" alt="Vanessa facilitando taller en Runway 7" loading="lazy" /> </div> <div class="visual-proof-item visual-proof-item--wide"> <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/f_auto,q_auto/v1775130015/foto_importa-emprende_ecsuhc.png" alt="Programa Importa y Emprende" loading="lazy" /> </div> <div class="visual-proof-item"> <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/f_auto,q_auto/v1775130015/grupo_haciendo_gesto_de_triangulo_en_taller_trascendenza_2017_ydbsgc.jpg" alt="Grupo en taller TRASCENDENZA" loading="lazy" /> </div> </div> <p class="visual-proof-note">Imágenes reales de sesiones y programas realizados con organizaciones en Perú, Colombia, Bolivia y España..</p> 
+                 <p class="testimonials-closing">
+Estos resultados no son casuales, son consecuencia de un proceso estructurado aplicado en contextos reales.
+</p>
+</div>
+ </div> 
+</section>
+
+
 
   <!-- LOGROS HIGHLIGHT -->
   <section class="section-padding">
@@ -271,16 +433,32 @@
   </section>
 
   <!-- CTA FINAL -->
-  <section class="cta-section">
-    <div class="container fade-up">
-      <span class="section-label">¿Listo para transformar?</span>
-      <h2>Conectemos y <span>hagámoslo realidad</span></h2>
-      <p class="section-subtitle">
-        Descubre cómo los programas de Vanessa Varesse pueden transformar el liderazgo de tu empresa, directivos y equipos de alto rendimiento.
-      </p>
-      <div class="cta-btns">
-        <a href="contacto.html" class="btn btn-gold">Solicitar información</a>
-        <a href="programas.html" class="btn btn-outline">Ver Programas</a>
+  <section class="cta-final-section">
+    <div class="container">
+      <div class="cta-final-inner fade-up">
+
+        <span class="section-label">Primer paso</span>
+        <h2 class="cta-final-title">Agenda un diagnóstico estratégico<br /><span>para tu organización</span></h2>
+        <p class="cta-final-subtitle">
+          Trabajamos con líderes, equipos y organizaciones que buscan transformar su forma de liderar y mejorar sus resultados de manera estructurada.
+        </p>
+
+        <div class="cta-value-block">
+          <p class="cta-value-label">En esta sesión podrás:</p>
+          <ul class="cta-value-list">
+            <li>Identificar los principales bloqueos en liderazgo y equipo</li>
+            <li>Detectar oportunidades de mejora en comunicación y desempeño</li>
+            <li>Evaluar si este proceso es adecuado para tu organización</li>
+          </ul>
+        </div>
+
+        <div class="cta-final-btns">
+          <a href="contacto.html" class="btn btn-gold">Solicitar diagnóstico estratégico</a>
+          <a href="contacto.html" class="btn btn-outline">Aplicar para trabajar con nosotros</a>
+        </div>
+
+        <p class="cta-final-trust">Proceso confidencial &nbsp;·&nbsp; Respuesta en menos de 24h</p>
+
       </div>
     </div>
   </section>
