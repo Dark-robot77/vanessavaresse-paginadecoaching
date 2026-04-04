@@ -10,6 +10,62 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    .logos-marquee-wrapper {
+      overflow: hidden;
+      width: 100%;
+      padding: 40px 0;
+      position: relative;
+      mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 15%, black 85%, transparent 100%);
+    }
+    .logos-marquee-track {
+      display: flex;
+      align-items: center;
+      gap: 80px;
+      width: max-content;
+      animation: marqueeScroll 18s linear infinite;
+    }
+    .logos-marquee-track:hover { animation-play-state: paused; }
+    @keyframes marqueeScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-33.333%); }
+    }
+    .logo-item {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 32px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(201,168,76,0.1);
+      transition: all 0.4s ease;
+      min-width: 160px;
+      height: 80px;
+    }
+    .logo-item:hover {
+      border-color: rgba(201,168,76,0.35);
+      background: rgba(201,168,76,0.05);
+    }
+    .logo-item img {
+      max-height: 45px;
+      max-width: 130px;
+      width: auto;
+      object-fit: contain;
+      filter: grayscale(100%) brightness(0.7);
+      opacity: 0.6;
+      transition: all 0.4s ease;
+    }
+    .logo-item:hover img {
+      filter: grayscale(0%) brightness(1);
+      opacity: 1;
+    }
+    @media (max-width: 768px) {
+      .logos-marquee-track { gap: 40px; }
+      .logo-item { min-width: 120px; height: 65px; padding: 12px 20px; }
+      .logo-item img { max-height: 35px; max-width: 100px; }
+    }
+  </style>
 </head>
 <body>
 
@@ -110,19 +166,39 @@
       <!-- Logos -->
       <div class="stats-logos-wrap fade-up delay-2">
         <span class="stats-logos-label">Organizaciones que han confiado en Vanessa Varesse</span>
-        <div class="stats-logos-grid">
-          <a href="empresas-alumnos.html" class="stats-logo-item" aria-label="Importa y Emprende Perú">
-            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/f_auto,q_auto/v1775118885/logo_importa_y_emprende_peru_ycvnof.png"
-                 alt="Importa y Emprende Perú" loading="lazy" />
-          </a>
-          <a href="empresas-alumnos.html" class="stats-logo-item" aria-label="7 Runway">
-            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/f_auto,q_auto/v1775118885/7runway_eorwi9.png"
-                 alt="7 Runway" loading="lazy" />
-          </a>
-          <a href="empresas-alumnos.html" class="stats-logo-item" aria-label="EsSalud">
-            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/f_auto,q_auto/v1775118885/logo-essalud_trt80t.jpg"
-                 alt="EsSalud" loading="lazy" />
-          </a>
+        <div class="logos-marquee-wrapper">
+          <div class="logos-marquee-track">
+            <!-- Set 1 -->
+            <div class="logo-item">
+              <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/logo_importa_y_emprende_peru_ycvnof.png" alt="Importa Emprende Perú" />
+            </div>
+            <div class="logo-item">
+              <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/7runway_eorwi9.png" alt="7 Runway" />
+            </div>
+            <div class="logo-item">
+              <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/logo-essalud_trt80t.jpg" alt="EsSalud" />
+            </div>
+            <!-- Set 2 — duplicado para loop infinito -->
+            <div class="logo-item">
+              <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/logo_importa_y_emprende_peru_ycvnof.png" alt="Importa Emprende Perú" />
+            </div>
+            <div class="logo-item">
+              <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/7runway_eorwi9.png" alt="7 Runway" />
+            </div>
+            <div class="logo-item">
+              <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/logo-essalud_trt80t.jpg" alt="EsSalud" />
+            </div>
+            <!-- Set 3 — tercer duplicado para suavidad -->
+            <div class="logo-item">
+              <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/logo_importa_y_emprende_peru_ycvnof.png" alt="Importa Emprende Perú" />
+            </div>
+            <div class="logo-item">
+              <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/7runway_eorwi9.png" alt="7 Runway" />
+            </div>
+            <div class="logo-item">
+              <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/logo-essalud_trt80t.jpg" alt="EsSalud" />
+            </div>
+          </div>
         </div>
       </div>
 
@@ -360,12 +436,8 @@
                  </div>
                  <div class="testimonial-card testimonial-card--highlighted fade-up delay-2"> <div class="testimonial-quote-mark">"
 
-                 </div> <blockquote class="testimonial-quote"> El proceso me permitió identificar patrones de conducta que limitaban mi capacidad de influencia. El impacto fue inmediato en la dinámica del equipo directivo. </blockquote> <div class="testimonial-author"> <div class="testimonial-author-info"> <strong>Directora de Recursos Humanos</strong> <span>Organización internacional — España</span> </div> </div> </div> <div class="testimonial-card fade-up delay-3"> <div class="testimonial-quote-mark">"</div> <blockquote class="testimonial-quote"> Llevaba años gestionando equipos. Fue aquí donde entendí que liderar empieza por entenderse a uno mismo. Los resultados operativos mejoraron en consecuencia. </blockquote> <div class="testimonial-author"> <div class="testimonial-author-info"> <strong>Director de Operaciones</strong> <span>Sector salud — Bolivia</span> </div> </div> </div> <div class="testimonial-card fade-up delay-4"> <div class="testimonial-quote-mark">"</div> <blockquote class="testimonial-quote"> El equipo pasó de trabajar con fricciones constantes a operar con una comunicación mucho más efectiva. La mejora fue estructural, no superficial. </blockquote> <div class="testimonial-author"> <div class="testimonial-author-info"> <strong>CEO</strong> <span>Empresa tecnológica — Colombia</span> </div> </div> </div> </div> <!-- Prueba visual --> <div class="visual-proof fade-up" style="margin-top: 80px;"> <p class="visual-proof-label">Procesos reales en entornos organizacionales activos</p> <div class="visual-proof-grid"> <div class="visual-proof-item"> <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/f_auto,q_auto/v1775130017/vanessa_facilitando_taller_en_runway_7_guquj5.jpg" alt="Vanessa facilitando taller en Runway 7" loading="lazy" /> </div> <div class="visual-proof-item visual-proof-item--wide"> <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/f_auto,q_auto/v1775130015/foto_importa-emprende_ecsuhc.png" alt="Programa Importa y Emprende" loading="lazy" /> </div> <div class="visual-proof-item"> <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/f_auto,q_auto/v1775130015/grupo_haciendo_gesto_de_triangulo_en_taller_trascendenza_2017_ydbsgc.jpg" alt="Grupo en taller TRASCENDENZA" loading="lazy" /> </div> </div> <p class="visual-proof-note">Imágenes reales de sesiones y programas realizados con organizaciones en Perú, Colombia, Bolivia y España..</p>
-                 <p class="testimonials-closing">
-Estos resultados no son casuales, son consecuencia de un proceso estructurado aplicado en contextos reales.
-</p>
-</div>
- </div>
+                 </div> <blockquote class="testimonial-quote"> El proceso me permitió identificar patrones de conducta que limitaban mi capacidad de influencia. El impacto fue inmediato en la dinámica del equipo directivo. </blockquote> <div class="testimonial-author"> <div class="testimonial-author-info"> <strong>Directora de Recursos Humanos</strong> <span>Organización internacional — España</span> </div> </div> </div> <div class="testimonial-card fade-up delay-3"> <div class="testimonial-quote-mark">"</div> <blockquote class="testimonial-quote"> Llevaba años gestionando equipos. Fue aquí donde entendí que liderar empieza por entenderse a uno mismo. Los resultados operativos mejoraron en consecuencia. </blockquote> <div class="testimonial-author"> <div class="testimonial-author-info"> <strong>Director de Operaciones</strong> <span>Sector salud — Bolivia</span> </div> </div> </div> <div class="testimonial-card fade-up delay-4"> <div class="testimonial-quote-mark">"</div> <blockquote class="testimonial-quote"> El equipo pasó de trabajar con fricciones constantes a operar con una comunicación mucho más efectiva. La mejora fue estructural, no superficial. </blockquote> <div class="testimonial-author"> <div class="testimonial-author-info"> <strong>CEO</strong> <span>Empresa tecnológica — Colombia</span> </div> </div> </div> </div>
+  </div>
   </section>
 
   <!-- LOGROS HIGHLIGHT -->
@@ -425,12 +497,7 @@ Estos resultados no son casuales, son consecuencia de un proceso estructurado ap
           <p>
             Soy Vanessa Varesse, Coach Transformacional especializada en liderazgo organizacional con más de una década transformando la mentalidad, el liderazgo y la cultura de empresas en toda Latinoamérica.
           </p>
-          <p>
-            Fundadora del <strong style="color:var(--gold)">Método Shock de Liderazgo Consciente®</strong> y de TRASCENDENZA Latinoamérica. He trabajado con más de 2,000 líderes y ejecutivos en Perú, Bolivia, Colombia, España, Francia y Andorra.
-          </p>
-          <p>
-            Mi enfoque va al núcleo del problema organizacional: la mentalidad, las emociones y el liderazgo de las personas. Aquí no trabajamos síntomas — trabajamos la raíz. El resultado son equipos más comprometidos, líderes más conscientes y organizaciones que realmente evolucionan.
-          </p>
+          <p>Fundadora del <strong style="color:var(--gold)">Método Shock de Liderazgo Consciente®</strong> y de TRASCENDENZA Latinoamérica. He trabajado con más de 2,000 líderes y ejecutivos en Latinoamérica<span style="color:var(--gold)">...</span></p>
           <div class="about-roles">
             <div class="about-role">
               <i class="fas fa-circle"></i>
@@ -438,18 +505,10 @@ Estos resultados no son casuales, son consecuencia de un proceso estructurado ap
             </div>
             <div class="about-role">
               <i class="fas fa-circle"></i>
-              Experta en PNL, Inteligencia Emocional y Cohesión de Equipos
-            </div>
-            <div class="about-role">
-              <i class="fas fa-circle"></i>
-              Consultora organizacional en Radio y TV
-            </div>
-            <div class="about-role">
-              <i class="fas fa-circle"></i>
               6x Speaker Internacional del Año — Cámara Internacional de Conferencistas
             </div>
           </div>
-          <a href="sobre-mi.html" class="btn btn-gold">Conoce mi historia</a>
+          <a href="sobre-mi.html" class="btn btn-gold">Ver mi perfil completo →</a>
         </div>
       </div>
     </div>
