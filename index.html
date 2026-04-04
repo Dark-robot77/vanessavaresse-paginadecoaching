@@ -160,7 +160,7 @@
       color: var(--white-pure);
       letter-spacing: 1px;
       margin: 0;
-    }
+    } 
     .testimonio-cargo {
       font-size: 0.75rem;
       color: var(--gold);
@@ -321,6 +321,77 @@
       .footer-brand img:first-child { height: 64px !important; margin-bottom: 18px !important; }
       .footer-logo-trascendenza { height: 48px !important; opacity: 0.85 !important; }
       .footer-brand p { font-size: 0.82rem !important; line-height: 1.7 !important; }
+    }
+
+    /* ===== FIX 1: carrusel testimonios deslizable en mobile ===== */
+    @media (max-width: 768px) {
+      .testimonios-carousel-wrapper {
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        scroll-behavior: smooth !important;
+        -webkit-overflow-scrolling: touch !important;
+        cursor: default !important;
+        mask-image: none !important;
+        -webkit-mask-image: none !important;
+      }
+      .testimonios-track {
+        animation: none !important;
+        width: max-content !important;
+        transform: none !important;
+        padding: 8px 20px 20px !important;
+      }
+      .testimonio-card {
+        scroll-snap-align: start !important;
+        width: 78vw !important;
+        max-width: 300px !important;
+        flex-shrink: 0 !important;
+      }
+    }
+
+    /* ===== FIX 2: logo Trascendenza en hero ===== */
+    @media (max-width: 768px) {
+      .hero-content img[src*="rascendenza"],
+      .hero-content img[src*="trascendenza"],
+      .hero img[src*="rascendenza"],
+      .hero img[src*="trascendenza"] {
+        max-width: 140px !important;
+        height: auto !important;
+        display: block !important;
+        overflow: visible !important;
+        object-fit: contain !important;
+      }
+      .hero-content,
+      .hero-eyebrow,
+      .hero-roles {
+        overflow: visible !important;
+      }
+      .hero-logo-trascendenza,
+      .hero [class*="logo"] {
+        overflow: visible !important;
+        max-width: 100% !important;
+      }
+    }
+
+    /* ===== FIX 3: logos footer más grandes en mobile ===== */
+    @media (max-width: 768px) {
+      .footer-brand img:first-child {
+        height: 68px !important;
+        width: auto !important;
+        max-width: 200px !important;
+        margin-bottom: 20px !important;
+        display: block !important;
+      }
+      .footer-logo-trascendenza {
+        height: 52px !important;
+        width: auto !important;
+        max-width: 160px !important;
+        opacity: 0.9 !important;
+        display: block !important;
+        margin-top: 16px !important;
+      }
+      .footer-brand {
+        text-align: left !important;
+      }
     }
   </style>
 </head>
@@ -1037,6 +1108,73 @@
       document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && overlay.classList.contains('active')) closePopup();
       });
+    })();
+  </script>
+
+  <!-- SCRIPT: Fix 1 — testimonios swipe mobile -->
+  <script>
+    (function fixTestimoniosSwipe() {
+      if (window.innerWidth > 768) return;
+
+      var wrapper = document.querySelector('.testimonios-carousel-wrapper');
+      var track   = document.getElementById('testimoniosTrack');
+      if (!wrapper || !track) return;
+
+      wrapper.style.overflowX = 'auto';
+      wrapper.style.overflowY = 'hidden';
+      wrapper.style.scrollSnapType = 'x mandatory';
+      wrapper.style.webkitOverflowScrolling = 'touch';
+
+      var cards = track.querySelectorAll('.testimonio-card');
+      var newTrack = document.createElement('div');
+      newTrack.style.cssText = 'display:flex;gap:16px;padding:8px 20px 20px;width:max-content;';
+
+      var count = 0;
+      cards.forEach(function(card) {
+        if (count >= 4) return;
+        var clone = card.cloneNode(true);
+        clone.style.scrollSnapAlign = 'start';
+        clone.style.flexShrink = '0';
+        clone.style.width = '78vw';
+        clone.style.maxWidth = '300px';
+
+        clone.addEventListener('click', function() {
+          var texto  = clone.querySelector('.testimonio-texto').textContent.trim();
+          var nombre = clone.querySelector('.testimonio-nombre').textContent.trim();
+          var cargo  = clone.querySelector('.testimonio-cargo').textContent.trim();
+          var pTexto  = document.getElementById('testimonioPopupTexto');
+          var pNombre = document.getElementById('testimonioPopupNombre');
+          var pCargo  = document.getElementById('testimonioPopupCargo');
+          var ov      = document.getElementById('testimonioPopup');
+          if (pTexto)  pTexto.textContent  = texto;
+          if (pNombre) pNombre.textContent = nombre;
+          if (pCargo)  pCargo.textContent  = cargo;
+          if (ov) { ov.classList.add('active'); document.body.style.overflow = 'hidden'; }
+        });
+
+        newTrack.appendChild(clone);
+        count++;
+      });
+
+      wrapper.innerHTML = '';
+      wrapper.appendChild(newTrack);
+
+      var popup    = document.getElementById('testimonioPopup');
+      var closeBtn = document.getElementById('testimonioPopupClose');
+      if (closeBtn) {
+        closeBtn.addEventListener('click', function() {
+          popup.classList.remove('active');
+          document.body.style.overflow = '';
+        });
+      }
+      if (popup) {
+        popup.addEventListener('click', function(e) {
+          if (e.target === popup) {
+            popup.classList.remove('active');
+            document.body.style.overflow = '';
+          }
+        });
+      }
     })();
   </script>
 
