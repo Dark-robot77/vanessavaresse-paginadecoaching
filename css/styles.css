@@ -1547,9 +1547,9 @@ p { color: var(--gray-light); line-height: 1.8; }
   gap: 60px;
   margin-bottom: 60px;
 }
-.footer-brand img:first-child { height: 48px; margin-bottom: 22px; }
+.footer-brand img:first-child { height: 80px; margin-bottom: 22px; }
 .footer-brand p { font-size: 0.86rem; color: var(--gray); line-height: 1.8; max-width: 280px; margin-bottom: 26px; }
-.footer-logo-trascendenza { height: 32px; opacity: 0.6; }
+.footer-logo-trascendenza { height: 54px; opacity: 0.75; }
 
 .footer-title {
   font-size: 0.7rem;

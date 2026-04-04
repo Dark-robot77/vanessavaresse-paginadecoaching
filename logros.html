@@ -10,6 +10,144 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <link rel="stylesheet" href="css/styles.css" />
+  <style>
+    /* ===== HERO LOGROS: muestra las caras ===== */
+    .page-hero {
+      min-height: 560px !important;
+      align-items: center !important;
+    }
+
+    /* ===== DIPLOMA MARQUEE (2 filas infinitas, sentido antihorario) ===== */
+    .diploma-showcase { overflow: hidden; }
+
+    .diploma-marquee-row {
+      overflow: hidden;
+      padding: 8px 0;
+      -webkit-mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, #000 40px, #000 calc(100% - 40px), transparent 100%);
+    }
+    .diploma-marquee-row:hover .diploma-marquee-track { animation-play-state: paused; }
+
+    .diploma-marquee-track {
+      display: flex;
+      gap: 14px;
+      width: max-content;
+      will-change: transform;
+    }
+    .diploma-marquee-track--left  { animation: diplomaLeft  45s linear infinite; }
+    .diploma-marquee-track--right { animation: diplomaRight 45s linear infinite; }
+
+    @keyframes diplomaLeft  { from { transform: translateX(0); }    to { transform: translateX(-50%); } }
+    @keyframes diplomaRight { from { transform: translateX(-50%); } to { transform: translateX(0);    } }
+
+    /* Override diploma-card inside marquee → thumbnail size */
+    .diploma-marquee-track .diploma-card {
+      flex-shrink: 0;
+      width: 155px;
+      border-radius: 10px;
+    }
+    .diploma-marquee-track .diploma-card:hover {
+      transform: translateY(-4px) scale(1.04);
+    }
+    @media (max-width: 768px) {
+      .diploma-marquee-track .diploma-card { width: 120px; }
+    }
+    @media (max-width: 480px) {
+      .diploma-marquee-track .diploma-card { width: 96px; border-radius: 8px; }
+      .diploma-marquee-row {
+        -webkit-mask-image: linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+        mask-image: linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%);
+      }
+    }
+
+    /* ===== VIDEO CIC — thumbnail trigger + modal popup ===== */
+    .cic-video-block { display: flex; justify-content: center; }
+
+    .cic-thumb-card {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      aspect-ratio: 9 / 16;
+      border-radius: 16px;
+      overflow: hidden;
+      cursor: pointer;
+      background: linear-gradient(145deg, #1a1408, #0d0d0d);
+      border: 1px solid rgba(201,168,76,0.25);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.55);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .cic-thumb-card:hover {
+      border-color: var(--gold);
+      box-shadow: 0 16px 56px rgba(0,0,0,0.7), 0 0 0 1px var(--gold);
+    }
+    .cic-play-ring {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 2px solid var(--gold);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--gold); font-size: 1.6rem;
+      padding-left: 5px;
+      transition: transform 0.3s, background 0.3s;
+    }
+    .cic-thumb-card:hover .cic-play-ring {
+      transform: scale(1.12);
+      background: rgba(201,168,76,0.14);
+    }
+    .cic-play-label {
+      font-family: var(--font-heading);
+      font-size: 1rem; font-style: italic;
+      color: rgba(255,255,255,0.82);
+      letter-spacing: 0.04em;
+      text-align: center;
+      padding: 0 24px;
+    }
+    .cic-thumb-deco {
+      position: absolute; bottom: 20px;
+      font-size: 0.72rem; letter-spacing: 0.14em;
+      color: rgba(201,168,76,0.5);
+      text-transform: uppercase;
+    }
+
+    /* Modal */
+    .cic-modal {
+      display: none;
+      position: fixed; inset: 0; z-index: 9990;
+      background: rgba(0,0,0,0.92);
+      align-items: center; justify-content: center;
+    }
+    .cic-modal.active { display: flex; }
+    .cic-modal-inner {
+      position: relative;
+      width: 85%;
+      max-width: 340px;
+    }
+    .cic-modal video { max-height: 68vh; }
+    .cic-modal-close {
+      position: absolute; top: -46px; right: 0;
+      width: 40px; height: 40px; border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff; font-size: 1rem;
+      cursor: pointer; display: flex;
+      align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+    .cic-modal-close:hover { background: rgba(255,255,255,0.2); }
+    .cic-modal video {
+      width: 100%; display: block;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.8);
+    }
+    @media (max-width: 480px) {
+      .cic-thumb-card { max-width: 260px; }
+      .cic-play-ring { width: 58px; height: 58px; font-size: 1.3rem; }
+    }
+  </style>
 </head>
 <body>
 
@@ -37,7 +175,7 @@
 
   <!-- PAGE HERO -->
   <section class="page-hero">
-    <div class="page-hero-bg" style="background-image: url('https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952707/vanessa_recibiendo_medalla_en_speaker_summit_peru_fmgrh8.jpg');"></div>
+    <div class="page-hero-bg" style="background-image: url('https://res.cloudinary.com/drj4pwy9t/image/upload/v1775322096/copy_of_imagen_796x420_nvzkln_0b954f.png'); background-position: center top; background-size: cover;"></div>
     <div class="container">
       <div class="breadcrumb">
         <a href="index.html">Inicio</a>
@@ -217,74 +355,86 @@
         </p>
       </div>
       <div class="diploma-showcase">
-        <!-- Desktop: grid estático -->
-        <div class="diploma-grid">
-          <div class="diploma-card fade-up" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087258/premio-11_jalcfs.jpg" alt="Diploma CIC 01" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">01</span></div></div>
-          </div>
-          <div class="diploma-card fade-up delay-1" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087258/premio-25_ydl8og.jpg" alt="Diploma CIC 02" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">02</span></div></div>
-          </div>
-          <div class="diploma-card fade-up delay-2" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087257/premio-22_lvruc3.jpg" alt="Diploma CIC 03" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">03</span></div></div>
-          </div>
-          <div class="diploma-card fade-up" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087257/premio-13_yntmql.jpg" alt="Diploma CIC 04" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">04</span></div></div>
-          </div>
-          <div class="diploma-card fade-up delay-1" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087257/premio-12_mwhteu.jpg" alt="Diploma CIC 05" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">05</span></div></div>
-          </div>
-          <div class="diploma-card fade-up delay-2" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087253/premio-23_zvkh0s.jpg" alt="Diploma CIC 06" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">06</span></div></div>
-          </div>
-          <div class="diploma-card fade-up" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087250/premio-24_ujlro9.jpg" alt="Diploma CIC 07" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">07</span></div></div>
-          </div>
-          <div class="diploma-card fade-up delay-1" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087249/premio-17_mwa6jh.jpg" alt="Diploma CIC 08" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">08</span></div></div>
-          </div>
-          <div class="diploma-card fade-up delay-2" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087249/premio-16_nivtx6.jpg" alt="Diploma CIC 09" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">09</span></div></div>
-          </div>
-          <div class="diploma-card fade-up" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087247/premio-14_ivc8uq.jpg" alt="Diploma CIC 10" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">10</span></div></div>
-          </div>
-          <div class="diploma-card fade-up delay-1" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087247/premio-19_buooyl.jpg" alt="Diploma CIC 11" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">11</span></div></div>
-          </div>
-          <div class="diploma-card fade-up delay-2" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087245/premio-20_g4gjga.jpg" alt="Diploma CIC 12" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">12</span></div></div>
-          </div>
-          <div class="diploma-card fade-up" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087245/premio-21_bipp1c.jpg" alt="Diploma CIC 13" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">13</span></div></div>
-          </div>
-          <div class="diploma-card fade-up delay-1" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087245/premio-15_jm1y8q.jpg" alt="Diploma CIC 14" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">14</span></div></div>
-          </div>
-          <div class="diploma-card fade-up delay-2" data-lightbox="diplomas">
-            <div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087244/premio-18_lrxyld.jpg" alt="Diploma CIC 15" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">15</span></div></div>
-          </div>
-        </div>
-        <!-- Mobile: peek slider -->
-        <div class="diploma-slider-mobile">
-          <div class="diploma-track">
+
+        <!-- Fila 1 — se mueve hacia la izquierda (impares: 01,03,05,07,09,11,13,15) -->
+        <div class="diploma-marquee-row">
+          <div class="diploma-marquee-track diploma-marquee-track--left">
             <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087258/premio-11_jalcfs.jpg" alt="Diploma CIC 01" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">01</span></div></div></div>
-            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087258/premio-25_ydl8og.jpg" alt="Diploma CIC 02" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">02</span></div></div></div>
             <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087257/premio-22_lvruc3.jpg" alt="Diploma CIC 03" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">03</span></div></div></div>
-            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087257/premio-13_yntmql.jpg" alt="Diploma CIC 04" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">04</span></div></div></div>
             <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087257/premio-12_mwhteu.jpg" alt="Diploma CIC 05" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">05</span></div></div></div>
-            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087253/premio-23_zvkh0s.jpg" alt="Diploma CIC 06" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">06</span></div></div></div>
             <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087250/premio-24_ujlro9.jpg" alt="Diploma CIC 07" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">07</span></div></div></div>
-            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087249/premio-17_mwa6jh.jpg" alt="Diploma CIC 08" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">08</span></div></div></div>
             <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087249/premio-16_nivtx6.jpg" alt="Diploma CIC 09" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">09</span></div></div></div>
-            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087247/premio-14_ivc8uq.jpg" alt="Diploma CIC 10" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">10</span></div></div></div>
             <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087247/premio-19_buooyl.jpg" alt="Diploma CIC 11" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">11</span></div></div></div>
-            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087245/premio-20_g4gjga.jpg" alt="Diploma CIC 12" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">12</span></div></div></div>
             <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087245/premio-21_bipp1c.jpg" alt="Diploma CIC 13" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">13</span></div></div></div>
-            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087245/premio-15_jm1y8q.jpg" alt="Diploma CIC 14" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">14</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087244/premio-18_lrxyld.jpg" alt="Diploma CIC 15" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">15</span></div></div></div>
+            <!-- duplicado para loop continuo -->
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087258/premio-11_jalcfs.jpg" alt="Diploma CIC 01" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">01</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087257/premio-22_lvruc3.jpg" alt="Diploma CIC 03" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">03</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087257/premio-12_mwhteu.jpg" alt="Diploma CIC 05" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">05</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087250/premio-24_ujlro9.jpg" alt="Diploma CIC 07" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">07</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087249/premio-16_nivtx6.jpg" alt="Diploma CIC 09" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">09</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087247/premio-19_buooyl.jpg" alt="Diploma CIC 11" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">11</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087245/premio-21_bipp1c.jpg" alt="Diploma CIC 13" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">13</span></div></div></div>
             <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087244/premio-18_lrxyld.jpg" alt="Diploma CIC 15" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">15</span></div></div></div>
           </div>
-          <div class="diploma-slider-dots"></div>
+        </div>
+
+        <!-- Fila 2 — se mueve hacia la derecha (pares: 02,04,06,08,10,12,14) -->
+        <div class="diploma-marquee-row" style="margin-top: 14px;">
+          <div class="diploma-marquee-track diploma-marquee-track--right">
+            <!-- duplicado primero (para que empiece desplazado -50% sin salto visual) -->
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087258/premio-25_ydl8og.jpg" alt="Diploma CIC 02" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">02</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087257/premio-13_yntmql.jpg" alt="Diploma CIC 04" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">04</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087253/premio-23_zvkh0s.jpg" alt="Diploma CIC 06" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">06</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087249/premio-17_mwa6jh.jpg" alt="Diploma CIC 08" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">08</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087247/premio-14_ivc8uq.jpg" alt="Diploma CIC 10" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">10</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087245/premio-20_g4gjga.jpg" alt="Diploma CIC 12" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">12</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087245/premio-15_jm1y8q.jpg" alt="Diploma CIC 14" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">14</span></div></div></div>
+            <!-- duplicado -->
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087258/premio-25_ydl8og.jpg" alt="Diploma CIC 02" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">02</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087257/premio-13_yntmql.jpg" alt="Diploma CIC 04" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">04</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087253/premio-23_zvkh0s.jpg" alt="Diploma CIC 06" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">06</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087249/premio-17_mwa6jh.jpg" alt="Diploma CIC 08" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">08</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087247/premio-14_ivc8uq.jpg" alt="Diploma CIC 10" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">10</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087245/premio-20_g4gjga.jpg" alt="Diploma CIC 12" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">12</span></div></div></div>
+            <div class="diploma-card" data-lightbox="diplomas"><div class="diploma-img-wrap"><img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775087245/premio-15_jm1y8q.jpg" alt="Diploma CIC 14" loading="lazy" /><div class="diploma-overlay"><span class="diploma-num">14</span></div></div></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO AGRADECIMIENTO CIC -->
+  <section class="section-padding bg-dark">
+    <div class="container">
+      <div class="text-center fade-up" style="margin-bottom: 50px;">
+        <span class="section-label">En sus propias palabras</span>
+        <h2>Gratitud a la <span>Cámara Internacional</span></h2>
+        <div class="divider"></div>
+        <p class="section-subtitle" style="margin: 0 auto; max-width: 580px;">
+          Vanessa expresa su emoción y agradecimiento por el Doctorado Honoris Causa y los reconocimientos de trayectoria otorgados por la CIC en más de 55 países.
+        </p>
+      </div>
+
+      <!-- Thumbnail trigger -->
+      <div class="cic-video-block fade-up">
+        <div class="cic-thumb-card" id="cicThumb" role="button" aria-label="Reproducir video">
+          <div class="cic-play-ring"><i class="fas fa-play"></i></div>
+          <p class="cic-play-label">Ver mensaje de Vanessa</p>
+          <span class="cic-thumb-deco">CIC &nbsp;·&nbsp; Doctorado Honoris Causa</span>
+        </div>
+      </div>
+
+      <!-- Modal popup -->
+      <div class="cic-modal" id="cicModal" role="dialog" aria-modal="true" aria-label="Video Vanessa CIC">
+        <div class="cic-modal-inner">
+          <button class="cic-modal-close" id="cicClose" aria-label="Cerrar">
+            <i class="fas fa-times"></i>
+          </button>
+          <video id="cicVideo" controls preload="none">
+            <source src="https://res.cloudinary.com/drj4pwy9t/video/upload/v1775319126/Gracias_me_siento_muy_feliz_y_agradecida._sanacion_mentepositiva_liderazgopersonal_afvgbl.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
     </div>
@@ -401,5 +551,36 @@
   </a>
 
   <script src="js/main.js"></script>
+  <script>
+    // ── Video popup CIC ──
+    (function() {
+      const thumb   = document.getElementById('cicThumb');
+      const modal   = document.getElementById('cicModal');
+      const closeBtn= document.getElementById('cicClose');
+      const video   = document.getElementById('cicVideo');
+      if (!thumb || !modal || !video) return;
+
+      function openModal() {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        video.play();
+      }
+      function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        video.pause();
+        video.currentTime = 0;
+      }
+
+      thumb.addEventListener('click', openModal);
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+      });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+      });
+    })();
+  </script>
 </body>
 </html>
