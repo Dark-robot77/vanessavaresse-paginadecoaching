@@ -53,6 +53,326 @@
       .vision-grid { grid-template-columns: 1fr !important; }
       .vision-statement { padding: 32px 24px; }
     }
+
+    /* ===== CAMBIO 1: stats personales ===== */
+    .stats-personal .stat-item h3 {
+      font-size: clamp(2.4rem, 4vw, 3.8rem);
+    }
+
+    /* ===== CAMBIO 2: timeline horizontal ===== */
+    .timeline-h {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 0;
+      padding: 60px 0 40px;
+    }
+    .timeline-h::before {
+      content: '';
+      position: absolute;
+      top: 80px;
+      left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4) 10%, rgba(201,168,76,0.4) 90%, transparent);
+    }
+    .timeline-h-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 0 12px;
+      position: relative;
+    }
+    .timeline-h-dot {
+      width: 18px; height: 18px;
+      background: var(--gold);
+      border-radius: 50%;
+      border: 3px solid var(--dark);
+      box-shadow: 0 0 0 2px var(--gold);
+      margin-bottom: 20px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+      transition: all 0.3s ease;
+    }
+    .timeline-h-item:hover .timeline-h-dot {
+      transform: scale(1.4);
+      box-shadow: 0 0 16px rgba(201,168,76,0.5);
+    }
+    .timeline-h-year {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+    .timeline-h-title {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--white-pure);
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .timeline-h-desc {
+      font-size: 0.72rem;
+      color: var(--gray);
+      line-height: 1.6;
+    }
+    @media (max-width: 768px) {
+      .timeline-h {
+        flex-direction: column;
+        gap: 0;
+        padding: 20px 0;
+      }
+      .timeline-h::before {
+        top: 0; bottom: 0;
+        left: 24px; right: auto;
+        width: 1px; height: auto;
+        background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.4) 10%, rgba(201,168,76,0.4) 90%, transparent);
+      }
+      .timeline-h-item {
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+        padding: 0 0 40px 60px;
+        gap: 0;
+      }
+      .timeline-h-dot {
+        position: absolute;
+        left: 15px;
+        top: 4px;
+        margin-bottom: 0;
+      }
+      .timeline-h-year { font-size: 1.3rem; }
+    }
+
+    /* ===== CAMBIO 3: galería carrusel ===== */
+    .galeria-momentos-wrapper { position: relative; }
+    .galeria-track-wrapper {
+      overflow: hidden;
+      width: 100%;
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    .galeria-track {
+      display: flex;
+      gap: 16px;
+      width: max-content;
+      animation: galeriaScroll1 28s linear infinite;
+    }
+    .galeria-track-reverse {
+      animation: galeriaScroll2 32s linear infinite;
+    }
+    .galeria-track.paused,
+    .galeria-track-reverse.paused { animation-play-state: paused; }
+    @keyframes galeriaScroll1 {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    @keyframes galeriaScroll2 {
+      0%   { transform: translateX(-50%); }
+      100% { transform: translateX(0); }
+    }
+    .galeria-item {
+      width: 320px; height: 220px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border: 1px solid rgba(201,168,76,0.1);
+      transition: border-color 0.3s ease;
+    }
+    .galeria-item:hover { border-color: rgba(201,168,76,0.4); }
+    .galeria-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease, filter 0.3s ease;
+    }
+    .galeria-item:hover img { transform: scale(1.06); filter: brightness(0.55); }
+    .galeria-item-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      padding: 16px;
+    }
+    .galeria-item:hover .galeria-item-overlay { opacity: 1; }
+    .galeria-item-overlay i { color: var(--gold); font-size: 1.4rem; }
+    .galeria-item-caption {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white-pure);
+      text-align: center;
+      line-height: 1.4;
+    }
+    .galeria-popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.94);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 24px;
+      cursor: zoom-out;
+    }
+    .galeria-popup-overlay.active { opacity: 1; visibility: visible; }
+    .galeria-popup-box {
+      max-width: 900px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      transform: scale(0.88);
+      transition: transform 0.4s cubic-bezier(0.19,1,0.22,1);
+      cursor: default;
+    }
+    .galeria-popup-overlay.active .galeria-popup-box { transform: scale(1); }
+    .galeria-popup-box img {
+      max-height: 80vh;
+      max-width: 100%;
+      object-fit: contain;
+      border: 1px solid rgba(201,168,76,0.2);
+      box-shadow: 0 20px 80px rgba(0,0,0,0.6);
+    }
+    .galeria-popup-caption {
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+    }
+    .galeria-popup-close {
+      position: fixed;
+      top: 24px; right: 28px;
+      width: 48px; height: 48px;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid rgba(201,168,76,0.3);
+      color: var(--gold);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 3001;
+    }
+    .galeria-popup-close:hover { background: var(--gold); color: var(--black); }
+    @media (max-width: 768px) {
+      .galeria-item { width: 240px; height: 165px; }
+      .galeria-track-wrapper { mask-image: none !important; -webkit-mask-image: none !important; }
+    }
+
+    /* ===== CAMBIO 4: valor-cards ===== */
+    .valor-card {
+      background: var(--dark-2);
+      border: 1px solid rgba(201,168,76,0.1);
+      padding: 50px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.35s ease;
+    }
+    .valor-card:hover {
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+    }
+    .valor-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .valor-card:hover::after { transform: scaleX(1); }
+    .valor-icon { font-size: 2.6rem; margin-bottom: 24px; display: block; }
+    .valor-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .valor-card p { font-size: 0.86rem; color: var(--gray-light); line-height: 1.85; }
+    .valor-bg-text {
+      position: absolute;
+      bottom: -20px; right: -10px;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 7rem;
+      color: rgba(201,168,76,0.04);
+      font-weight: 700;
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+    @media (max-width: 768px) {
+      .valor-card { padding: 36px 24px; }
+      #valores .container > div:not(.text-center) {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+      }
+    }
+
+    /* ===== CAMBIO 5: fixes mobile generales ===== */
+    @media (max-width: 768px) {
+      .about-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+      .about-photo { order: 1 !important; max-width: 100% !important; }
+      .about-photo img { aspect-ratio: 4/3 !important; object-position: top !important; }
+      .about-photo-badge { bottom: -15px !important; right: 0 !important; }
+      .about-text { order: 2 !important; }
+    }
+    @media (max-width: 768px) {
+      #vision .container > div[style*="grid"],
+      .section-padding > .container > div[style*="grid-template-columns: 1fr 1fr"] {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .section-padding > .container > div[style*="grid"] {
+        grid-template-columns: 1fr !important;
+        gap: 32px !important;
+      }
+      .section-padding img[src*="rascendenza"] { height: 40px !important; width: auto !important; }
+    }
+    @media (max-width: 768px) {
+      .countries-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+      .country-card { aspect-ratio: 3/2 !important; }
+      .country-label { font-size: 0.6rem !important; letter-spacing: 1px !important; padding: 14px 8px 8px !important; }
+    }
+    @media (max-width: 768px) {
+      .stats-personal .stats-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 20px !important; }
+      .stats-personal .stat-item h3 { font-size: 2.2rem !important; }
+    }
+    @media (max-width: 768px) {
+      .quote-block { padding: 32px 24px !important; }
+      .quote-block p { font-size: 1.2rem !important; }
+    }
+    @media (max-width: 768px) {
+      .section-padding { padding: 60px 0 !important; }
+      .section-padding-sm { padding: 44px 0 !important; }
+    }
   </style>
 </head>
 <body>
@@ -93,6 +413,30 @@
     </div>
   </section>
 
+  <!-- STATS PERSONALES -->
+  <section class="stats-bar stats-personal">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item fade-up delay-1">
+          <h3 class="shimmer-text">9</h3>
+          <p>Años de Experiencia</p>
+        </div>
+        <div class="stat-item fade-up delay-2">
+          <h3 class="stat-counter" data-target="2000" data-suffix="+">2000+</h3>
+          <p>Personas Entrenadas</p>
+        </div>
+        <div class="stat-item fade-up delay-3">
+          <h3 class="shimmer-text">159K</h3>
+          <p>Seguidores en Redes</p>
+        </div>
+        <div class="stat-item fade-up delay-4">
+          <h3 class="stat-counter" data-target="6" data-suffix="+">6+</h3>
+          <p>Países de Presencia</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- BIO PRINCIPAL -->
   <section class="section-padding">
     <div class="container">
@@ -127,6 +471,55 @@
             <div class="about-role"><i class="fas fa-circle"></i> Show Woman de Impacto Transformacional</div>
             <div class="about-role"><i class="fas fa-circle"></i> Empresaria y líder de opinión</div>
           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIMELINE DE HITOS -->
+  <section id="trayectoria" class="section-padding bg-dark">
+    <div class="container">
+      <div class="text-center fade-up" style="margin-bottom: 70px;">
+        <span class="section-label">Trayectoria</span>
+        <h2 class="section-title">Una historia de<br/><span>excelencia continua</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div class="timeline-h">
+        <div class="timeline-h-item fade-up delay-1">
+          <div class="timeline-h-dot"></div>
+          <div class="timeline-h-year">2015</div>
+          <div class="timeline-h-title">Fundación TRASCENDENZA</div>
+          <div class="timeline-h-desc">Nace la Escuela de Liderazgo Transformacional y Conciencia del Ser en Latinoamérica</div>
+        </div>
+        <div class="timeline-h-item fade-up delay-2">
+          <div class="timeline-h-dot"></div>
+          <div class="timeline-h-year">2019</div>
+          <div class="timeline-h-title">Primera Condecoración CIC</div>
+          <div class="timeline-h-desc">Speaker del Año por primera vez. Reconocimiento de trayectoria ACL-PNL</div>
+        </div>
+        <div class="timeline-h-item fade-up delay-3">
+          <div class="timeline-h-dot"></div>
+          <div class="timeline-h-year">2021</div>
+          <div class="timeline-h-title">Doctorado Honoris Causa</div>
+          <div class="timeline-h-desc">Máximo título de honor CIC. Senadora Internacional con presencia en más de 55 países</div>
+        </div>
+        <div class="timeline-h-item fade-up delay-4">
+          <div class="timeline-h-dot"></div>
+          <div class="timeline-h-year">2023</div>
+          <div class="timeline-h-title">International Speaker</div>
+          <div class="timeline-h-desc">International Speaker of the Year por el Senado Internacional de la CIC</div>
+        </div>
+        <div class="timeline-h-item fade-up delay-5">
+          <div class="timeline-h-dot"></div>
+          <div class="timeline-h-year">2024</div>
+          <div class="timeline-h-title">Cruz Orlada CIC</div>
+          <div class="timeline-h-desc">Speaker del Año + Cruz Orlada por trayectoria profesional y de negocios</div>
+        </div>
+        <div class="timeline-h-item fade-up delay-6">
+          <div class="timeline-h-dot"></div>
+          <div class="timeline-h-year">2025</div>
+          <div class="timeline-h-title">General de la CIC</div>
+          <div class="timeline-h-desc">Gran Maestra Internacional y Mejor Conferencista Peruana 2025</div>
         </div>
       </div>
     </div>
@@ -173,7 +566,7 @@
     <div class="container">
       <div class="text-center fade-up" style="margin-bottom: 60px;">
         <span class="section-label">Presencia Internacional</span>
-        <h2>Un impacto que<br /><span>cruza fronteras</span></h2>
+        <h2>Un impacto que<br /><span>cruza Fronteras</span></h2>
         <div class="divider"></div>
         <p class="section-subtitle" style="margin: 0 auto;">
           He llevado la transformación a 6 países, dejando huella en cada ciudad, cada empresa y cada persona que ha vivido mis programas.
@@ -308,6 +701,123 @@
     </div>
   </section>
 
+  <!-- GALERÍA DE MOMENTOS -->
+  <section id="galeria-momentos" class="section-padding">
+    <div class="container">
+      <div class="text-center fade-up" style="margin-bottom: 50px;">
+        <span class="section-label">Momentos Clave</span>
+        <h2 class="section-title">Una trayectoria que<br/><span>se ve y se siente</span></h2>
+        <div class="divider"></div>
+      </div>
+    </div>
+
+    <div class="galeria-momentos-wrapper">
+
+      <!-- Fila 1 — izquierda a derecha -->
+      <div class="galeria-track-wrapper">
+        <div class="galeria-track" id="galeriaTrack1">
+          <div class="galeria-item" data-src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952763/vanessa_varesse_galardonada_por_la_CIC_yeyf06.jpg" data-caption="Reconocimiento CIC — Latinoamérica">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952763/vanessa_varesse_galardonada_por_la_CIC_yeyf06.jpg" alt="Reconocimiento CIC" loading="lazy" />
+            <div class="galeria-item-overlay"><span class="galeria-item-caption">Reconocimiento CIC — Latinoamérica</span><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="galeria-item" data-src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952217/france_vane_qyrllo.png" data-caption="Ponencia Internacional — Francia">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952217/france_vane_qyrllo.png" alt="Francia" loading="lazy" />
+            <div class="galeria-item-overlay"><span class="galeria-item-caption">Ponencia Internacional — Francia</span><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="galeria-item" data-src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952662/vanessa_facilitando_taller_en_runway_7_sumxoq.jpg" data-caption="Taller Corporativo — 7 Runway">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952662/vanessa_facilitando_taller_en_runway_7_sumxoq.jpg" alt="7 Runway" loading="lazy" />
+            <div class="galeria-item-overlay"><span class="galeria-item-caption">Taller Corporativo — 7 Runway</span><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <!-- Duplicados fila 1 -->
+          <div class="galeria-item" data-src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952763/vanessa_varesse_galardonada_por_la_CIC_yeyf06.jpg" data-caption="Reconocimiento CIC — Latinoamérica">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952763/vanessa_varesse_galardonada_por_la_CIC_yeyf06.jpg" alt="Reconocimiento CIC" loading="lazy" />
+            <div class="galeria-item-overlay"><span class="galeria-item-caption">Reconocimiento CIC — Latinoamérica</span><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="galeria-item" data-src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952217/france_vane_qyrllo.png" data-caption="Ponencia Internacional — Francia">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952217/france_vane_qyrllo.png" alt="Francia" loading="lazy" />
+            <div class="galeria-item-overlay"><span class="galeria-item-caption">Ponencia Internacional — Francia</span><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="galeria-item" data-src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952662/vanessa_facilitando_taller_en_runway_7_sumxoq.jpg" data-caption="Taller Corporativo — 7 Runway">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952662/vanessa_facilitando_taller_en_runway_7_sumxoq.jpg" alt="7 Runway" loading="lazy" />
+            <div class="galeria-item-overlay"><span class="galeria-item-caption">Taller Corporativo — 7 Runway</span><i class="fas fa-expand-alt"></i></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Fila 2 — derecha a izquierda -->
+      <div class="galeria-track-wrapper" style="margin-top: 16px;">
+        <div class="galeria-track galeria-track-reverse" id="galeriaTrack2">
+          <div class="galeria-item" data-src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952663/vanessa_liderando_dinamica_tomados_de_la_mano_en_conferencia_izwvoh.jpg" data-caption="Dinámica Grupal — TRASCENDENZA">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952663/vanessa_liderando_dinamica_tomados_de_la_mano_en_conferencia_izwvoh.jpg" alt="Dinámica grupal" loading="lazy" />
+            <div class="galeria-item-overlay"><span class="galeria-item-caption">Dinámica Grupal — TRASCENDENZA</span><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="galeria-item" data-src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775310694/238890230_915340732396096_6690611605641993984_n_judxa6.jpg" data-caption="Evento Internacional — Colombia">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775310694/238890230_915340732396096_6690611605641993984_n_judxa6.jpg" alt="Colombia" loading="lazy" />
+            <div class="galeria-item-overlay"><span class="galeria-item-caption">Evento Internacional — Colombia</span><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="galeria-item" data-src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775310880/Condecoracion_Vanessa_Varesse_CIC_2019_lgd4np.png" data-caption="Condecoración CIC 2019">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775310880/Condecoracion_Vanessa_Varesse_CIC_2019_lgd4np.png" alt="Condecoración CIC 2019" loading="lazy" />
+            <div class="galeria-item-overlay"><span class="galeria-item-caption">Condecoración CIC 2019</span><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <!-- Duplicados fila 2 -->
+          <div class="galeria-item" data-src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952663/vanessa_liderando_dinamica_tomados_de_la_mano_en_conferencia_izwvoh.jpg" data-caption="Dinámica Grupal — TRASCENDENZA">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1774952663/vanessa_liderando_dinamica_tomados_de_la_mano_en_conferencia_izwvoh.jpg" alt="Dinámica grupal" loading="lazy" />
+            <div class="galeria-item-overlay"><span class="galeria-item-caption">Dinámica Grupal — TRASCENDENZA</span><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="galeria-item" data-src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775310694/238890230_915340732396096_6690611605641993984_n_judxa6.jpg" data-caption="Evento Internacional — Colombia">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775310694/238890230_915340732396096_6690611605641993984_n_judxa6.jpg" alt="Colombia" loading="lazy" />
+            <div class="galeria-item-overlay"><span class="galeria-item-caption">Evento Internacional — Colombia</span><i class="fas fa-expand-alt"></i></div>
+          </div>
+          <div class="galeria-item" data-src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775310880/Condecoracion_Vanessa_Varesse_CIC_2019_lgd4np.png" data-caption="Condecoración CIC 2019">
+            <img src="https://res.cloudinary.com/drj4pwy9t/image/upload/v1775310880/Condecoracion_Vanessa_Varesse_CIC_2019_lgd4np.png" alt="Condecoración CIC 2019" loading="lazy" />
+            <div class="galeria-item-overlay"><span class="galeria-item-caption">Condecoración CIC 2019</span><i class="fas fa-expand-alt"></i></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- POPUP GALERÍA -->
+    <div class="galeria-popup-overlay" id="galeriaPopup">
+      <button class="galeria-popup-close" id="galeriaPopupClose"><i class="fas fa-times"></i></button>
+      <div class="galeria-popup-box">
+        <img id="galeriaPopupImg" src="" alt="" />
+        <p class="galeria-popup-caption" id="galeriaPopupCaption"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALORES CORE -->
+  <section id="valores" class="section-padding bg-dark">
+    <div class="container">
+      <div class="text-center fade-up" style="margin-bottom: 60px;">
+        <span class="section-label">Lo que me define</span>
+        <h2 class="section-title">Valores que guían<br/><span>cada proceso</span></h2>
+        <div class="divider"></div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(3,1fr); gap: 28px;">
+        <div class="valor-card fade-up delay-1">
+          <span class="valor-icon"><i class="fas fa-heart" style="color:var(--gold);"></i></span>
+          <h3>Amor</h3>
+          <p>Cada proceso que facilito nace del amor genuino por las personas. Creo que el amor consciente es la base de todo liderazgo verdadero y sostenible.</p>
+          <span class="valor-bg-text">01</span>
+        </div>
+        <div class="valor-card fade-up delay-2">
+          <span class="valor-icon"><i class="fas fa-balance-scale" style="color:var(--gold);"></i></span>
+          <h3>Coherencia</h3>
+          <p>Lidero desde lo que soy, no desde lo que aparento. La coherencia entre lo que pienso, digo y hago es el estándar que exijo primero en mí y luego en mis procesos.</p>
+          <span class="valor-bg-text">02</span>
+        </div>
+        <div class="valor-card fade-up delay-3">
+          <span class="valor-icon"><i class="fas fa-seedling" style="color:var(--gold);"></i></span>
+          <h3>Transformación</h3>
+          <p>No creo en los cambios superficiales. Trabajo en la raíz. Cada persona que pasa por este proceso sale siendo una versión más auténtica, más libre y más poderosa de sí misma.</p>
+          <span class="valor-bg-text">03</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="gold-separator"></div>
 
   <!-- CTA -->
@@ -376,5 +886,56 @@
   </a>
 
   <script src="js/main.js"></script>
+
+  <!-- SCRIPT: galería carrusel + popup -->
+  <script>
+    (function initGaleria() {
+      var tracks = document.querySelectorAll('.galeria-track, .galeria-track-reverse');
+      tracks.forEach(function(track) {
+        track.addEventListener('mouseenter', function() { track.classList.add('paused'); });
+        track.addEventListener('mouseleave', function() { track.classList.remove('paused'); });
+        track.addEventListener('touchstart', function() { track.classList.add('paused'); }, { passive: true });
+        track.addEventListener('touchend', function() {
+          setTimeout(function() { track.classList.remove('paused'); }, 2500);
+        }, { passive: true });
+      });
+
+      var overlay      = document.getElementById('galeriaPopup');
+      var popupImg     = document.getElementById('galeriaPopupImg');
+      var popupCaption = document.getElementById('galeriaPopupCaption');
+      var closeBtn     = document.getElementById('galeriaPopupClose');
+
+      function openGaleriaPopup(src, caption) {
+        popupImg.src = src;
+        popupImg.alt = caption;
+        popupCaption.textContent = caption;
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        tracks.forEach(function(t) { t.classList.add('paused'); });
+      }
+
+      function closeGaleriaPopup() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        tracks.forEach(function(t) { t.classList.remove('paused'); });
+        setTimeout(function() { popupImg.src = ''; }, 400);
+      }
+
+      document.querySelectorAll('.galeria-item').forEach(function(item) {
+        item.addEventListener('click', function() {
+          var src     = item.dataset.src;
+          var caption = item.dataset.caption;
+          if (src) openGaleriaPopup(src, caption);
+        });
+      });
+
+      if (closeBtn) closeBtn.addEventListener('click', closeGaleriaPopup);
+      if (overlay) overlay.addEventListener('click', function(e) { if (e.target === overlay) closeGaleriaPopup(); });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay && overlay.classList.contains('active')) closeGaleriaPopup();
+      });
+    })();
+  </script>
+
 </body>
 </html>
