@@ -23,6 +23,18 @@ if (navToggle && navMenu) {
   });
 }
 
+/* ===== HERO SLIDER ===== */
+(function initHeroSlider() {
+  const slides = document.querySelectorAll('.hero-slide');
+  if (!slides.length) return;
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 5000);
+})();
+
 /* ===== ACTIVE NAV LINK ===== */
 const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.nav-menu a').forEach(link => {
@@ -613,4 +625,53 @@ document.addEventListener('click', (e) => {
   createShader('metodoCanvas');
   createShader('metodoProgramasCanvas');
 
+})();
+
+/* ===== DIPLOMA SLIDER MOBILE ===== */
+(function initDiplomaSlider() {
+  const sliderEl = document.querySelector('.diploma-slider-mobile');
+  if (!sliderEl) return;
+
+  const track = sliderEl.querySelector('.diploma-track');
+  const cards = Array.from(track.querySelectorAll('.diploma-card'));
+  const dotsEl = sliderEl.querySelector('.diploma-slider-dots');
+  if (!cards.length) return;
+
+  let current = 0;
+
+  // Build dots
+  cards.forEach((_, i) => {
+    const btn = document.createElement('button');
+    btn.setAttribute('aria-label', 'Diploma ' + (i + 1));
+    if (i === 0) btn.classList.add('active');
+    btn.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(btn);
+  });
+
+  function goTo(index) {
+    cards[current].classList.remove('active');
+    dotsEl.children[current].classList.remove('active');
+    current = Math.max(0, Math.min(index, cards.length - 1));
+    cards[current].classList.add('active');
+    dotsEl.children[current].classList.add('active');
+    // Offset: each card is 80% + 10% left padding + 16px gap
+    const cardW = cards[0].offsetWidth;
+    const gap = 16;
+    // Center active card accounting for 10% peek padding
+    const trackPad = sliderEl.offsetWidth * 0.1;
+    track.style.transform = 'translateX(' + (trackPad - current * (cardW + gap)) + 'px)';
+  }
+
+  // Init first card active
+  cards[0].classList.add('active');
+
+  // Touch/swipe
+  let startX = 0;
+  track.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener('touchend', e => {
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) diff > 0 ? goTo(current + 1) : goTo(current - 1);
+  });
+
+  window.addEventListener('resize', () => goTo(current));
 })();
