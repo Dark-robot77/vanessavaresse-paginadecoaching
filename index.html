@@ -65,6 +65,263 @@
       .logo-item { min-width: 120px; height: 65px; padding: 12px 20px; }
       .logo-item img { max-height: 35px; max-width: 100px; }
     }
+
+    /* ===== CAMBIO 1: stat-fade-in ===== */
+    .stat-fade-in {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.9s ease, transform 0.9s ease;
+    }
+    .stat-fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== CAMBIO 2: carrusel testimonios ===== */
+    .testimonios-carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+      padding: 10px 0 40px;
+      mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    }
+    .testimonios-track {
+      display: flex;
+      gap: 28px;
+      width: max-content;
+      animation: testimoniosScroll 32s linear infinite;
+      cursor: grab;
+    }
+    .testimonios-track:active { cursor: grabbing; }
+    .testimonios-track.paused { animation-play-state: paused; }
+    @keyframes testimoniosScroll {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    .testimonio-card {
+      background: var(--dark);
+      border: 1px solid rgba(201,168,76,0.15);
+      padding: 44px 36px;
+      width: 380px;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.3s ease;
+      cursor: pointer;
+    }
+    .testimonio-card:hover {
+      border-color: rgba(201,168,76,0.4);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+    }
+    .testimonio-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+    .testimonio-card:hover::before { transform: scaleX(1); }
+    .testimonio-comilla {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 5rem;
+      color: rgba(201,168,76,0.15);
+      line-height: 0.8;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .testimonio-texto {
+      font-size: 0.9rem;
+      color: var(--gray-light);
+      line-height: 1.85;
+      margin-bottom: 28px;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .testimonio-autor {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .testimonio-linea {
+      width: 30px;
+      height: 2px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .testimonio-nombre {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--white-pure);
+      letter-spacing: 1px;
+      margin: 0;
+    }
+    .testimonio-cargo {
+      font-size: 0.75rem;
+      color: var(--gold);
+      margin: 4px 0 0;
+      letter-spacing: 0.5px;
+    }
+    .testimonio-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: all 0.3s ease;
+    }
+    .testimonio-card:hover .testimonio-cta { opacity: 1; transform: translateY(0); }
+    .testimonio-cta i { font-size: 0.65rem; }
+    .testimonio-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 32px;
+    }
+    .t-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: rgba(201,168,76,0.25);
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    .t-dot.active { background: var(--gold); width: 24px; border-radius: 3px; }
+    /* POPUP */
+    .testimonio-popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.88);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      padding: 24px;
+    }
+    .testimonio-popup-overlay.active { opacity: 1; visibility: visible; }
+    .testimonio-popup-box {
+      background: var(--dark);
+      border: 1px solid rgba(201,168,76,0.25);
+      padding: 56px 56px 48px;
+      max-width: 640px;
+      width: 100%;
+      position: relative;
+      transform: scale(0.88) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.19,1,0.22,1);
+    }
+    .testimonio-popup-overlay.active .testimonio-popup-box { transform: scale(1) translateY(0); }
+    .testimonio-popup-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 44px; height: 44px;
+      background: rgba(201,168,76,0.1);
+      border: 1px solid rgba(201,168,76,0.25);
+      color: var(--gold);
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .testimonio-popup-close:hover { background: var(--gold); color: var(--black); }
+    .testimonio-popup-comilla {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 6rem;
+      color: rgba(201,168,76,0.12);
+      line-height: 0.7;
+      margin-bottom: 20px;
+      display: block;
+    }
+    .testimonio-popup-texto {
+      color: var(--white-pure);
+      line-height: 1.9;
+      margin-bottom: 32px;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.15rem;
+    }
+    .testimonio-popup-autor { display: flex; align-items: center; gap: 16px; }
+    .testimonio-popup-nombre {
+      font-size: 0.84rem; font-weight: 700;
+      color: var(--white-pure); letter-spacing: 1px; margin: 0;
+    }
+    .testimonio-popup-cargo { font-size: 0.76rem; color: var(--gold); margin: 5px 0 0; }
+    @media (max-width: 768px) {
+      .testimonio-card { width: 300px; }
+      .testimonio-popup-box { padding: 44px 28px 36px; }
+      .testimonio-popup-texto { font-size: 1rem; }
+    }
+
+    /* ===== CAMBIO 3: servicios scroll-snap mobile ===== */
+    @media (max-width: 768px) {
+      .services-grid {
+        display: flex !important;
+        flex-direction: row !important;
+        overflow-x: auto !important;
+        scroll-snap-type: x mandatory !important;
+        scroll-behavior: smooth !important;
+        gap: 16px !important;
+        padding: 8px 24px 24px !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+      }
+      .services-grid::-webkit-scrollbar { display: none !important; }
+      .service-card {
+        flex-shrink: 0 !important;
+        width: 82vw !important;
+        max-width: 320px !important;
+        scroll-snap-align: start !important;
+        padding: 32px 24px !important;
+      }
+      .service-card p { font-size: 0.84rem !important; line-height: 1.75 !important; margin-bottom: 20px !important; }
+      .service-card [class*="result"],
+      .service-card [class*="badge"],
+      .service-card small,
+      .service-card .programa-resultado {
+        margin-top: 16px !important; padding: 10px 14px !important;
+        font-size: 0.75rem !important; line-height: 1.5 !important; display: block !important;
+      }
+    }
+
+    /* ===== CAMBIO 4: fixes mobile ===== */
+    @media (max-width: 768px) {
+      .nav-logo img {
+        height: 44px !important; min-width: 120px !important;
+        width: auto !important; opacity: 1 !important; filter: brightness(1.2) !important;
+      }
+    }
+    @media (max-width: 768px) {
+      .section-padding > .container > div[style*="grid-template-columns: repeat(3"] {
+        grid-template-columns: 1fr !important; gap: 16px !important;
+      }
+      .card { padding: 28px 22px !important; }
+      .card h3 { font-size: 1rem !important; margin-bottom: 10px !important; line-height: 1.3 !important; }
+      .card p { font-size: 0.82rem !important; line-height: 1.7 !important; }
+      .card-icon { font-size: 1.8rem !important; margin-bottom: 14px !important; }
+      .awards-highlight { padding: 36px 24px !important; }
+      .awards-highlight h2 { font-size: 1.6rem !important; line-height: 1.2 !important; }
+      .awards-highlight p { font-size: 0.84rem !important; line-height: 1.7 !important; }
+    }
+    @media (max-width: 768px) {
+      .footer-brand img:first-child { height: 64px !important; margin-bottom: 18px !important; }
+      .footer-logo-trascendenza { height: 48px !important; opacity: 0.85 !important; }
+      .footer-brand p { font-size: 0.82rem !important; line-height: 1.7 !important; }
+    }
   </style>
 </head>
 <body>
@@ -150,7 +407,7 @@
           <p>Líderes Transformados en Latinoamérica</p>
         </div>
         <div class="stat-item fade-up delay-2">
-          <h3 class="shimmer-text">↓40%</h3>
+          <h3 class="shimmer-text stat-fade-in">↓40%</h3>
           <p>Reducción del Estrés Laboral Reportada</p>
         </div>
         <div class="stat-item fade-up delay-3">
@@ -158,7 +415,7 @@
           <p>Países con Equipos Transformados</p>
         </div>
         <div class="stat-item fade-up delay-4">
-          <h3 class="shimmer-text">+85%</h3>
+          <h3 class="shimmer-text stat-fade-in">+85%</h3>
           <p>Mejora en Clima Organizacional</p>
         </div>
       </div>
@@ -423,20 +680,117 @@
       </p>
       </div>
 
-       <!-- Tarjetas de testimonio -->
-         <div class="testimonials-grid">
-           <div class="testimonial-card fade-up delay-1">
-             <div class="testimonial-quote-mark">"</div>
-              <blockquote class="testimonial-quote"> Antes tomaba decisiones desde la urgencia. Hoy tomo decisiones desde la claridad. Ese cambio transformó no solo mi liderazgo, sino también los resultados de mi equipo. </blockquote>
-              <div class="testimonial-author">
-                 <div class="testimonial-author-info"> <strong>Gerente General</strong>
-                   <span>Empresa de servicios — Perú</span>
-                   </div>
-                  </div>
-                 </div>
-                 <div class="testimonial-card testimonial-card--highlighted fade-up delay-2"> <div class="testimonial-quote-mark">"
+    <div class="testimonios-carousel-wrapper">
+      <div class="testimonios-track" id="testimoniosTrack">
 
-                 </div> <blockquote class="testimonial-quote"> El proceso me permitió identificar patrones de conducta que limitaban mi capacidad de influencia. El impacto fue inmediato en la dinámica del equipo directivo. </blockquote> <div class="testimonial-author"> <div class="testimonial-author-info"> <strong>Directora de Recursos Humanos</strong> <span>Organización internacional — España</span> </div> </div> </div> <div class="testimonial-card fade-up delay-3"> <div class="testimonial-quote-mark">"</div> <blockquote class="testimonial-quote"> Llevaba años gestionando equipos. Fue aquí donde entendí que liderar empieza por entenderse a uno mismo. Los resultados operativos mejoraron en consecuencia. </blockquote> <div class="testimonial-author"> <div class="testimonial-author-info"> <strong>Director de Operaciones</strong> <span>Sector salud — Bolivia</span> </div> </div> </div> <div class="testimonial-card fade-up delay-4"> <div class="testimonial-quote-mark">"</div> <blockquote class="testimonial-quote"> El equipo pasó de trabajar con fricciones constantes a operar con una comunicación mucho más efectiva. La mejora fue estructural, no superficial. </blockquote> <div class="testimonial-author"> <div class="testimonial-author-info"> <strong>CEO</strong> <span>Empresa tecnológica — Colombia</span> </div> </div> </div> </div>
+        <div class="testimonio-card" data-popup="true">
+          <div class="testimonio-comilla">&ldquo;</div>
+          <p class="testimonio-texto">Antes tomaba decisiones desde la urgencia. Hoy tomo decisiones desde la claridad. Ese cambio transformó no solo mi liderazgo, sino también los resultados de mi equipo.</p>
+          <div class="testimonio-autor">
+            <div class="testimonio-linea"></div>
+            <div>
+              <p class="testimonio-nombre">Gerente General</p>
+              <p class="testimonio-cargo">Empresa de servicios — Perú</p>
+            </div>
+          </div>
+          <div class="testimonio-cta"><span>Leer completo</span><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <div class="testimonio-card" data-popup="true">
+          <div class="testimonio-comilla">&ldquo;</div>
+          <p class="testimonio-texto">El proceso me permitió identificar patrones de conducta que limitaban mi capacidad de influencia. El impacto fue inmediato en la dinámica del equipo directivo.</p>
+          <div class="testimonio-autor">
+            <div class="testimonio-linea"></div>
+            <div>
+              <p class="testimonio-nombre">Directora de Recursos Humanos</p>
+              <p class="testimonio-cargo">Organización internacional — España</p>
+            </div>
+          </div>
+          <div class="testimonio-cta"><span>Leer completo</span><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <div class="testimonio-card" data-popup="true">
+          <div class="testimonio-comilla">&ldquo;</div>
+          <p class="testimonio-texto">Llevaba años gestionando equipos. Fue aquí donde entendí que liderar empieza por entenderse a uno mismo. Los resultados operativos mejoraron en consecuencia.</p>
+          <div class="testimonio-autor">
+            <div class="testimonio-linea"></div>
+            <div>
+              <p class="testimonio-nombre">Director de Operaciones</p>
+              <p class="testimonio-cargo">Sector salud — Bolivia</p>
+            </div>
+          </div>
+          <div class="testimonio-cta"><span>Leer completo</span><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <div class="testimonio-card" data-popup="true">
+          <div class="testimonio-comilla">&ldquo;</div>
+          <p class="testimonio-texto">El equipo pasó de trabajar con fricciones constantes a operar con una comunicación mucho más efectiva. La mejora fue estructural, no superficial.</p>
+          <div class="testimonio-autor">
+            <div class="testimonio-linea"></div>
+            <div>
+              <p class="testimonio-nombre">CEO</p>
+              <p class="testimonio-cargo">Empresa tecnológica — Colombia</p>
+            </div>
+          </div>
+          <div class="testimonio-cta"><span>Leer completo</span><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <!-- Duplicados para loop infinito -->
+        <div class="testimonio-card" data-popup="true">
+          <div class="testimonio-comilla">&ldquo;</div>
+          <p class="testimonio-texto">Antes tomaba decisiones desde la urgencia. Hoy tomo decisiones desde la claridad. Ese cambio transformó no solo mi liderazgo, sino también los resultados de mi equipo.</p>
+          <div class="testimonio-autor">
+            <div class="testimonio-linea"></div>
+            <div>
+              <p class="testimonio-nombre">Gerente General</p>
+              <p class="testimonio-cargo">Empresa de servicios — Perú</p>
+            </div>
+          </div>
+          <div class="testimonio-cta"><span>Leer completo</span><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+        <div class="testimonio-card" data-popup="true">
+          <div class="testimonio-comilla">&ldquo;</div>
+          <p class="testimonio-texto">El proceso me permitió identificar patrones de conducta que limitaban mi capacidad de influencia. El impacto fue inmediato en la dinámica del equipo directivo.</p>
+          <div class="testimonio-autor">
+            <div class="testimonio-linea"></div>
+            <div>
+              <p class="testimonio-nombre">Directora de Recursos Humanos</p>
+              <p class="testimonio-cargo">Organización internacional — España</p>
+            </div>
+          </div>
+          <div class="testimonio-cta"><span>Leer completo</span><i class="fas fa-arrow-right"></i></div>
+        </div>
+
+      </div>
+
+      <!-- Dots indicadores -->
+      <div class="testimonio-dots">
+        <span class="t-dot active"></span>
+        <span class="t-dot"></span>
+        <span class="t-dot"></span>
+        <span class="t-dot"></span>
+      </div>
+    </div>
+
+    <!-- POPUP OVERLAY -->
+    <div class="testimonio-popup-overlay" id="testimonioPopup">
+      <div class="testimonio-popup-box">
+        <button class="testimonio-popup-close" id="testimonioPopupClose">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="testimonio-popup-comilla">&ldquo;</div>
+        <p class="testimonio-popup-texto" id="testimonioPopupTexto"></p>
+        <div class="testimonio-popup-autor">
+          <div class="testimonio-linea"></div>
+          <div>
+            <p class="testimonio-popup-nombre" id="testimonioPopupNombre"></p>
+            <p class="testimonio-popup-cargo" id="testimonioPopupCargo"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
   </section>
 
@@ -606,5 +960,85 @@
   </a>
 
   <script src="js/main.js"></script>
+
+  <!-- SCRIPT: stat-fade-in -->
+  <script>
+    (function() {
+      const fadStats = document.querySelectorAll('.stat-fade-in');
+      const fadObs = new IntersectionObserver(
+        function(entries) {
+          entries.forEach(function(e, i) {
+            if (e.isIntersecting) {
+              setTimeout(function() {
+                e.target.classList.add('visible');
+              }, i * 200);
+              fadObs.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+      fadStats.forEach(function(el) { fadObs.observe(el); });
+    })();
+  </script>
+
+  <!-- SCRIPT: carrusel y popup de testimonios -->
+  <script>
+    (function initTestimonios() {
+      const track = document.getElementById('testimoniosTrack');
+      if (!track) return;
+
+      track.addEventListener('mouseenter', function() { track.classList.add('paused'); });
+      track.addEventListener('mouseleave', function() { track.classList.remove('paused'); });
+      track.addEventListener('touchstart', function() { track.classList.add('paused'); }, { passive: true });
+      track.addEventListener('touchend', function() {
+        setTimeout(function() { track.classList.remove('paused'); }, 3000);
+      }, { passive: true });
+
+      const dots = document.querySelectorAll('.t-dot');
+      const totalOriginal = 4;
+      setInterval(function() {
+        const card = track.querySelector('.testimonio-card');
+        if (!card) return;
+        const cardW = card.offsetWidth + 28;
+        const scrollX = Math.abs(
+          track.getBoundingClientRect().left -
+          track.parentElement.getBoundingClientRect().left
+        );
+        const idx = Math.round(scrollX / cardW) % totalOriginal;
+        dots.forEach(function(d, i) { d.classList.toggle('active', i === idx); });
+      }, 600);
+
+      const overlay   = document.getElementById('testimonioPopup');
+      const popupTexto  = document.getElementById('testimonioPopupTexto');
+      const popupNombre = document.getElementById('testimonioPopupNombre');
+      const popupCargo  = document.getElementById('testimonioPopupCargo');
+      const popupClose  = document.getElementById('testimonioPopupClose');
+
+      function openPopup(card) {
+        popupTexto.textContent  = card.querySelector('.testimonio-texto').textContent.trim();
+        popupNombre.textContent = card.querySelector('.testimonio-nombre').textContent.trim();
+        popupCargo.textContent  = card.querySelector('.testimonio-cargo').textContent.trim();
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        track.classList.add('paused');
+      }
+      function closePopup() {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+        track.classList.remove('paused');
+      }
+
+      document.querySelectorAll('.testimonio-card[data-popup="true"]').forEach(function(card) {
+        card.addEventListener('click', function() { openPopup(card); });
+      });
+      if (popupClose) popupClose.addEventListener('click', closePopup);
+      if (overlay) overlay.addEventListener('click', function(e) { if (e.target === overlay) closePopup(); });
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && overlay.classList.contains('active')) closePopup();
+      });
+    })();
+  </script>
+
 </body>
 </html>
